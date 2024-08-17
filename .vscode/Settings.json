@@ -1,0 +1,46 @@
+{
+    
+    "Prefix": {
+        "HelpPrefix": "?",
+        "InfoPrefix": "!",
+        "VerifyPrefix": "$"
+    },
+    "Commands": {
+        "help": "help",
+        "membercount": "membercount",
+        "info": "info",
+        "server": "info",
+        "verify": "verify"
+    },
+    "Channels": {
+        "GuildID": "",
+        "Welcome-Channel": "1255512702823038988",
+        "Leave-Channel": "",
+        "ReactionRole-Channel": "1272092694302298113",
+        "ReactionRoleLog-Channel": "1272100246775926804",
+        "Bot-Channel": "",
+        "Verify-Channel": "1255801973668843580",
+        "VerifyLog-Channel": "1272140872875638804",
+        "Roll-Channel": "1273240171717988386"
+    },
+    "Roles": {
+        "Verify-Role": "1258372497364095018",
+        "ReactionRoleEmoji": {
+            "GreenCircle": "🟢",
+            "RedCircle": "🔴",
+            "BlueCircle": "🔵",
+            "OrangeCircle": "🟠",
+            "YellowCircle": "🟡",
+            "PurpleCircle": "🟣",
+            "BlackCircle": "⚫",
+            "WhiteCircle": "⚪",
+            "BrownCircle": "🟤"
+        }
+    },
+    "BotEmojs": {
+        
+    },
+    "Messages": {
+        "ReactionRole-Message": "1272092740951347324"
+    }
+}

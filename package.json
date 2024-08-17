@@ -1,0 +1,24 @@
+{
+    "dependencies": {
+        "discord.js": "^14.15.3",
+        "dotenv": "^16.4.5"
+    },
+    "name": "dc-bot",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {
+        "eslint": "^9.9.0"
+    },
+    "scripts": {
+        "test": "node src/index.js"
+    },
+    "_moduleAliases": {
+        "@vscode": ".vscode"
+    },
+    "author": "",
+    "license": "ISC",
+    "directories": {
+        "test": "test"
+    },
+    "description": ""
+}
