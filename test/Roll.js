@@ -1,12 +1,10 @@
 const Discord = require("discord.js");
-require("module-alias/register");
-const settingsJSON = require("@vscode/Settings.json");
 const functions = require("../functions/GlobalFunctions");
 
 const formatLargeNumber = functions.formatLargeNumber;
 
-const Luck = 1000;
-const Bulk = 10;
+const Luck = 1;
+const Bulk = 1;
 //[[name] [Chance] [roleID] [ID]]
 
 const Raritys = [
@@ -52,64 +50,59 @@ const Raritys = [
     [["Infinity     "], [1, 50000000000], ["8492017365"], [37]],
 ];
 
-function RollRarity(message) {
+function RollRarity() {
     const getRarity = (RArray) => {
-        let TotalWeight = 0;
-        let NewRarityArray = [];
+        let TotalWeight = 0;  // Initialize total weight accumulator
+        let AccumulatedWeights = []; // Array to store accumulated weights for each rarity
+        let CumulativeWeights = [];  // Array to store cumulative weights for quick lookup
+        
+        // Precompute weights and cumulative weights
+        RArray.forEach((Rarity, index) => {
+            let Weight = Rarity[1][1]; // Get the maximum chance (weight) for the current rarity
+            let NewWeight = Weight / Luck; // Calculate the effective weight based on Luck
 
-        RArray.forEach((Rarity) => {
-            let Weight = Rarity[1][1];
-            let NewWeight = Weight / Luck;
+            if (NewWeight < 1) NewWeight = 1; // Ensure minimum weight is 1
 
-            if (NewWeight < 1) {
-                NewWeight = 1;
-            }
+            let fraction = 1 / NewWeight; // Calculate the fraction of total weight
+            TotalWeight += fraction; // Accumulate total weight
 
-            let fraction = 1 / NewWeight;
-            TotalWeight += fraction;
-            NewRarityArray.push(fraction);
+            AccumulatedWeights[index] = fraction; // Store fraction weight for each rarity
+            CumulativeWeights[index] = TotalWeight; // Store cumulative weights for quick lookup
         });
+        console.log(CumulativeWeights)
+        console.log(AccumulatedWeights)
 
-        let BulkRolls = [];
+        let BulkRolls = new Array(Bulk); // Array to hold the result of each roll
 
+        // Perform bulk rolls
         for (let r = 0; r < Bulk; r++) {
-            const rnd = Math.random() * TotalWeight;
-            let SelectedRarity;
-            let ACC = 0;
-            let Index;
-            let ModifiedIndex;
-            let RawPercentage;
-            let ModifiedPercentage;
-            let ID;
+            const rnd = Math.random() * TotalWeight; // Generate a random number within the total weight
+            // Find the index of the rarity that corresponds to the random number
+            let SelectedRarityIndex = CumulativeWeights.findIndex(weight => rnd <= weight);
+            
+            // Retrieve the selected rarity details
+            let SelectedRarity = RArray[SelectedRarityIndex][0][0]; // Name of the rarity
+            let Index = RArray[SelectedRarityIndex][1][1]; // Maximum chance value for the rarity
+            let ID = RArray[SelectedRarityIndex][3]; // ID associated with the rarity
+            
+            // Calculate percentages
+            let RawPercentage = (RArray[SelectedRarityIndex][1][0] / RArray[SelectedRarityIndex][1][1]) * 100; 
+            let ModifiedPercentage = AccumulatedWeights[SelectedRarityIndex] * 100;
+            let ModifiedIndex = RArray[SelectedRarityIndex][1][1] / Luck; // Adjusted chance based on Luck
+            if (ModifiedIndex < 1) ModifiedIndex = 1; // Ensure minimum chance is 1
 
-            for (let i = 0; i < RArray.length; i++) {
-                ACC += NewRarityArray[i];
-                if (rnd < ACC) {
-                    SelectedRarity = RArray[i][0][0]; // The Name
-                    Index = RArray[i][1][1];
-                    ID = RArray[i][3];
-                    ModifiedPercentage = NewRarityArray[i] * 100;
-                    RawPercentage = (RArray[i][1][0] / RArray[i][1][1]) * 100;
-                    ModifiedIndex = RArray[i][1][1] / Luck;
-                    if (ModifiedIndex < 1) ModifiedIndex = 1;
-                    break;
-                }
-            }
-
-            BulkRolls.push(
-                `\nRolled: ${SelectedRarity} ID ${ID}: ${RawPercentage}% [${ModifiedPercentage}%] the Chance was 1 in ${formatLargeNumber(Index)} [1 in ${ModifiedIndex}] with Luck: ${Luck}`
-            );
+            // Format the result string for the current roll
+            BulkRolls[r] = `Rolled: ${SelectedRarity} ID ${ID}: ${RawPercentage}% [${ModifiedPercentage}%] the Chance was 1 in ${formatLargeNumber(Index)} [1 in ${ModifiedIndex}] with Luck: ${formatLargeNumber(Luck)}\n`;
         }
 
         try {
-            return BulkRolls.join("")
-            
+            return BulkRolls.join(''); // Join all roll results into a single string
         } catch (error) {
-            console.error(error);
+            console.error(error); // Log any error that occurs
         }
     };
 
-    console.error(getRarity(Raritys));
+    console.log(getRarity(Raritys)); // Call the getRarity function and print the result
 }
 
-RollRarity(Raritys);
+RollRarity(Raritys); // Execute the RollRarity function with the Raritys data

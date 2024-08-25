@@ -4,7 +4,7 @@ function delay(ms) {
 }
 
 function formatLargeNumber(num) {
-    if (typeof num === 'number' && !isNaN(num)) {
+    if (typeof num === 'number') {
         const suffixes = ["", "k", "M", "B", "T", "q"];
         let index = 0;
 

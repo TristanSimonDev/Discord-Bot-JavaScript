@@ -12,9 +12,6 @@
     "scripts": {
         "test": "node src/index.js"
     },
-    "_moduleAliases": {
-        "@vscode": ".vscode"
-    },
     "author": "",
     "license": "ISC",
     "directories": {

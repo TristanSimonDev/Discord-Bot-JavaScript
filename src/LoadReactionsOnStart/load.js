@@ -1,21 +1,44 @@
-const Discord = require('discord.js')
-require("module-alias/register");
-const SettingsJSON = require('@vscode/Settings.json')
+const Discord = require('discord.js');
+const SettingsJSON = require('../../.vscode/Settings.json');
 
-const ReactionRoleMessage = SettingsJSON
-const ReactionRoleChannel = SettingsJSON.Channels["ReactionRole-Channel"]
+const emojis = Object.values(SettingsJSON.Reactions.ReactionRoleEmoji);
 
-
-const LoadReactions = (Client) => {
+const LoadReactions = async (Client) => {
+    
     if (Client instanceof Discord.Client) {
-        try {
 
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
+        
+        const reactionRoleChannel = Client.channels.cache.get(SettingsJSON.Channels['ReactionRole-Channel']);
+             class LoadMessageWithReaction {
+                    static LoadReactionRoleEmojis = async () => {
+                        if (reactionRoleChannel instanceof Discord.TextChannel) { 
+                            const message = await reactionRoleChannel.messages.fetch(SettingsJSON.Messages['ReactionRole-Message']);
+                            const reactions = message.reactions.cache
+
+                            reactions.forEach(async reaction => {
+                                console.log(`Reaction: ${reaction.emoji.name}, Count: ${reaction.count}`);
+                            });
+                
+                            for (const emoji of emojis) {
+                                await message.react(emoji);
+                            } 
+
+                        }
+                    }                    
+
+                              
+                 }
+            
+        
+
+        LoadMessageWithReaction.LoadReactionRoleEmojis()
+    } 
+};
+
+
+
+
 
 module.exports = {
     LoadReactions
-}
+};

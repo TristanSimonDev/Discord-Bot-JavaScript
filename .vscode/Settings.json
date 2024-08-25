@@ -13,18 +13,21 @@
         "verify": "verify"
     },
     "Channels": {
-        "GuildID": "",
+        "GuildID": "1124983259781156915",
         "Welcome-Channel": "1255512702823038988",
-        "Leave-Channel": "",
+        "Leave-Channel": "1255512788424589353",
         "ReactionRole-Channel": "1272092694302298113",
         "ReactionRoleLog-Channel": "1272100246775926804",
-        "Bot-Channel": "",
+        "Bot-Channel": "1254532650756997270",
         "Verify-Channel": "1255801973668843580",
         "VerifyLog-Channel": "1272140872875638804",
-        "Roll-Channel": "1273240171717988386"
+        "Roll-Channel": "1273240171717988386",
+        "Rules-Channel": "1255512145341186118"
     },
     "Roles": {
-        "Verify-Role": "1258372497364095018",
+        "Verify-Role": "1258372497364095018"
+    },
+    "Reactions": {
         "ReactionRoleEmoji": {
             "GreenCircle": "🟢",
             "RedCircle": "🔴",
@@ -35,12 +38,21 @@
             "BlackCircle": "⚫",
             "WhiteCircle": "⚪",
             "BrownCircle": "🟤"
-        }
+        },
+        "RulesReaction": "✅"
+        
+        
+
     },
     "BotEmojs": {
         
     },
     "Messages": {
-        "ReactionRole-Message": "1272092740951347324"
+        "ReactionRole-Message": "1272092740951347324",
+        "Rules-Message": "1255809402380746752"
+    },
+
+    "Test": {
+        "roles-emoji": ["hi","🟢"]
     }
 }

@@ -9,9 +9,7 @@ async function MessageReply(message) {
 
         Rarity.RollRarity(message)
 
-
-
-
+    
 
 
     } else {

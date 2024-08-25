@@ -14,42 +14,38 @@ const ReactionEvent = async (reaction, user) => {
             ReactionRoleChannel: reaction.message.guild?.channels.cache.get(SettingsJSON.Channels['ReactionRole-Channel']),
             RulesChannel: reaction.message.guild.channels.cache.get(SettingsJSON.Channels['Rules-Channel']),
         }
-        class Loading {
-            constructor() {
-                this.ReactionRoleEmojis = () => {
-                    if (reaction.message.channelId == Channels.ReactionRoleChannel && ReactionRoleEmojis.includes(reaction.emoji.name)) {
-                        console.log(reaction.emoji.name)
-                        Channels.ReactionRoleLogChannel.send(`User: ${user.globalName} with Reaction ${reaction.emoji.name}`)
-                    }
-                }
-                this.RulesEmojis = () => {
-                    if (reaction.message.channelId == Channels.RulesChannel && RulesEmoji.includes(reaction.emoji.name)) {
-                        console.log(reaction.emoji.name)
-                        Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`)
-                    }
+        class ReactionEnvent {
+            static ReactionRoleEmojis = () => {
+                if (reaction.message.channelId == Channels.ReactionRoleChannel && ReactionRoleEmojis.includes(reaction.emoji.name)) {
+                    console.log(reaction.emoji.name)
+                    Channels.ReactionRoleLogChannel.send(`User: ${user.globalName} with Reaction ${reaction.emoji.name}`)
                 }
             }
-        }
 
-        const Events = new Loading()
+            static RulesEmojis = () => {
+                if (reaction.message.channelId == Channels.RulesChannel && RulesEmoji.includes(reaction.emoji.name)) {
+                    console.log(reaction.emoji.name)
+                    Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`)
+                }
+                
+            }
+        }
         
         const EventFunctions = [
-            Events.ReactionRoleEmojis(),
-            Events.RulesEmojis()
+            ReactionEnvent.ReactionRoleEmojis(),
+            ReactionEnvent.RulesEmojis()
         ]
         
         EventFunctions.forEach(element => {});
         
         
-        
-       
-        
-        
+    
       
         
    
     }      
 }
+
 
 
 module.exports = {

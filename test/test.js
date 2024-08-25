@@ -1,5 +1,12 @@
-require('module-alias/register');
-const settingsJSON = require('@vscode/Settings.json')
+class Test {
+    constructor() {
+         this.sayHello = () => {
+             console.log("hi");
+        }  
+    }
+}
 
-const HelpPrefix = settingsJSON.Prefix.HelpPrefix
-console.log(typeof(HelpPrefix))
+// Create an instance of the Test class
+const testInstance = new Test();
+
+testInstance.sayHello()

@@ -1,11 +1,10 @@
 const Discord = require("discord.js");
-require("module-alias/register");
-const settingsJSON = require("@vscode/Settings.json");
+const settingsJSON = require("../.vscode/Settings.json");
 const functions = require('../functions/GlobalFunctions')
 
 const formatLargeNumber = functions.formatLargeNumber
 
-const Luck = 100;
+const Luck = 1e30;
 const Bulk = 1
 //[[name] [Chance] [roleID] [ID]]
 
@@ -104,7 +103,7 @@ function RollRarity(message) {
                         `\nRolled: ${SelectedRarity}` +
                         `\n\nChance: ${RawPercentage}%` +
                         `\nwith <:CloverGreen:1273876673980534856> ${ModifiedPercentage}%` +
-                        `\n\nValue: 1 in ${Index}` +
+                        `\n\nValue: 1 in ${formatLargeNumber(Index)}` +
                         `\nwith <:CloverGreen:1273876673980534856> 1 in ${ModifiedIndex}` +
                         `\n\nModifiers<:Settings:1273951989134397440>:` +
                         `\n\nLuck: ${Luck} <:CloverGreen:1273876673980534856>` +
@@ -114,7 +113,7 @@ function RollRarity(message) {
                 
                 try {
                     RollChannel.send({ embeds: [Embed] });
-                    return `Rolled: ${SelectedRarity} ID ${ID}: ${RawPercentage}% [${ModifiedPercentage}%] the Chance was 1 in ${Index} [1 in ${ModifiedIndex}] with Luck: ${Luck}`;
+                    return `Rolled: ${SelectedRarity} ID ${ID}: ${RawPercentage}% [${ModifiedPercentage}%] the Chance was 1 in ${formatLargeNumber(Index)} [1 in ${ModifiedIndex}] with Luck: ${formatLargeNumber(Luck)}`;
                 } catch (error) {
                     console.error(error)
                 }
