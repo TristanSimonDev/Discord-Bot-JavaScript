@@ -1,4 +1,4 @@
-const SettingsJSON = require('../.vscode/Settings.json')
+const SettingsJSON = require('../../../.vscode/BotSettings/Settings.json')
 const Discord = require('discord.js')
 
 

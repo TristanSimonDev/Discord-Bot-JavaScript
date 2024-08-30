@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const SettingsJSON = require('../../.vscode/Settings.json');
+const SettingsJSON = require('../../../../.vscode/BotSettings/Settings.json')
 
 const emojis = Object.values(SettingsJSON.Reactions.ReactionRoleEmoji);
 

@@ -1,0 +1,24 @@
+{
+  "848247310520680489": {
+    "MessageBot": {
+      "LevelTab": {
+        "xp": 0,
+        "level": 1,
+        "ReqXP": 5
+      },
+      "UserInfo": {
+        "ID": "848247310520680489",
+        "GlobalName": "! 编码员特里斯坦",
+        "NameTag": "sin___y",
+        "Data": {
+          "UpdateMessages": 0,
+          "MessagesUntillUpdate": 5
+        }
+      }
+    },
+    "RarityBot": {
+      "Luck": 1,
+      "Bulk": 1
+    }
+  }
+}

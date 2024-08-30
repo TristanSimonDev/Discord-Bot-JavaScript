@@ -1,16 +1,20 @@
 {
     "dependencies": {
         "discord.js": "^14.15.3",
-        "dotenv": "^16.4.5"
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "lint": "^0.8.19",
+        "ws": "^8.18.0"
     },
     "name": "dc-bot",
     "version": "1.0.0",
     "main": "index.js",
     "devDependencies": {
+        "electron": "^32.0.1",
         "eslint": "^9.9.0"
     },
     "scripts": {
-        "test": "node src/index.js"
+        "test": "node src/Bots/Bot1/index.js"
     },
     "author": "",
     "license": "ISC",

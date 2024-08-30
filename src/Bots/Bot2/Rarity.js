@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const settingsJSON = require("../.vscode/Settings.json");
+const SettingsJSON = require('../.vscode/json/Settings.json')
 const functions = require('../functions/GlobalFunctions')
 
 const formatLargeNumber = functions.formatLargeNumber
