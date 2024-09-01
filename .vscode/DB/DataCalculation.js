@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 
+const dataTemplate = require('./dataTemplate')
+
 const DBpath = ".vscode/DB/MessageBotDB.json";
 
 const data = fs.readFileSync(DBpath, "utf8");
@@ -9,8 +11,6 @@ const ParsedDataBase = JSON.parse(data);
 
 const RefreshDataTable = (message) => {
     if (message instanceof Discord.Message) {
-
-        const authorID = message.author.id
 
         console.log("passed")
 
@@ -23,7 +23,7 @@ const RefreshDataTable = (message) => {
                     ReqXP: ParsedDataBase[authorID].MessageBot.LevelTab.ReqXP,
                 },
                 UserInfo: {
-                    ID: authorID,
+                    ID: message.author.id,
                     GlobalName: message.author.globalName,
                     NameTag: message.author.tag,
 
@@ -51,32 +51,15 @@ function DataBase(message) {
 
 
         if (!ParsedDataBase[authorID]) {
-            ParsedDataBase[authorID] = {
-                MessageBot: {
-                    LevelTab: {
-                        xp: 0,
-                        level: 1,
-                        ReqXP: 5,
-                    },
-                    UserInfo: {
-                        ID: authorID,
-                        GlobalName: message.author.globalName,
-                        NameTag: message.author.tag,
-                    },
-                },
-                RarityBot: {
-                    Luck: 1,
-                    Bulk: 1,
-                },
-            };
+            ParsedDataBase[authorID] = dataTemplate.dataTemplate(message)
+
+            //RefreshDataTable(message)
+
+            const updatedData = JSON.stringify(ParsedDataBase, null, 2);
+            fs.writeFileSync(DBpath, updatedData, "utf8", (error) => { });
+            console.log("done");
         }
-
-        RefreshDataTable(message)
-
-        const updatedData = JSON.stringify(ParsedDataBase, null, 2);
-        fs.writeFileSync(DBpath, updatedData, "utf8", (error) => {});
-        console.log("done");
     }
 }
 
-module.exports = { DataBase };
+    module.exports = { DataBase }
