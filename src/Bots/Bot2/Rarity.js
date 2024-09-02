@@ -108,7 +108,8 @@ function RollRarity(message) {
                         `\n\nModifiers<:Settings:1280029107614122079>:` +
                         `\n\nLuck: ${Luck} <:GreenClover:1280028333043617844>` +
                         `\nBulk: ${Bulk} <:Bulk:1280030882786443346>` +
-                        `\n\nID ${ID}/${Raritys.length} <:Index:1280030904470863883>`
+                        `\n\nID ${ID}/${Raritys.length} <:Index:1280030904470863883>` +
+                        `\n\nBoost<:BulkPotion:1280029914330042388><:LuckPotion:1280029881601626232><:PotionBlueStroke:1280029859749564416>:`
                 );
                 
                 try {
