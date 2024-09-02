@@ -1,26 +1,21 @@
-let Bulk = 1
+let Bulk = 1e5
 
 const Raritys = [
-    [["Common       "], [1, 5], ["4372443329"], [1]],
-    [["Uncommon     "], [1, 25], ["5823491740"], [2]],
-    [["Epic         "], [1, 500], ["9372640185"], [3]],
-    [["Rare         "], [1, 200], ["1047385926"], [4]],
-    [["Legendary    "], [1, 1000], ["6730192854"], [5]],
-    [["Mythical     "], [1, 5000], ["2395847160"], [6]],
-    [["Ancient      "], [1, 10000], ["8473291056"], [7]],
+    ["Common       ", 5, ["4372443329"], 1],
+    ["Uncommon     ", 25, ["5823491740"], 2],
+    ["Epic         ", 500, ["9372640185"], 3],
+    ["Rare         ", 200, ["1047385926"], 4],
+    ["Legendary    ", 1000, ["6730192854"], 5],
+    ["Mythical     ", 5000, ["2395847160"], 6],
+    ["Ancient      ", 10000, ["8473291056"], 7],
 ];
 
 let RollRarity = (RariyArray) => {
     
-    let TotalWeight = 0;
+    let TotalRaritys = 0;
     let WeightArray = [];
     
-    RariyArray.forEach(Rarity => {
-        let weight = Rarity[1][1];
-        let fraction = 1 / weight;
-        TotalWeight += fraction;
-        WeightArray.push(fraction);
-    });
+    
 
     let selectedRarities = [];
 

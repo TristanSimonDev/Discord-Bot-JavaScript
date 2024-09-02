@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const fs = require('fs')
 
-const DataBaseCalculation = require('../../../.vscode/DB/Calculation')
+const DataBaseCalculation = require('../../../.vscode/DB/DataCalculation')
 
 // Data Pat
 

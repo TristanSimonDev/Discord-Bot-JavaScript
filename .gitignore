@@ -4,3 +4,8 @@
 
 #ignore node_modules
 node_modules/
+
+#hide data
+.vscode/DB/MessageBotDB.json
+
+test/

@@ -15,7 +15,8 @@
         "eslint": "^9.9.0"
     },
     "scripts": {
-        "test": "node src/Bots/Bot1/index.js"
+        "Bot1": "node src/Bots/Bot1/index.js",
+        "Bot2": "node src/Bots/Bot2/index.js"
     },
     "author": "",
     "license": "ISC",

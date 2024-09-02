@@ -1,6 +1,4 @@
-const dotenv = require('dotenv') 
-
-dotenv.config()
+const dotenv = require('dotenv').config()
 
 function LoadEnvForChatBot() {
     const Token = process.env.TokenForChatBot

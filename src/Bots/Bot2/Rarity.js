@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const SettingsJSON = require('../.vscode/json/Settings.json')
-const functions = require('../functions/GlobalFunctions')
+const SettingsJSON = require('../../../.vscode/BotSettings/Settings.json')
+const functions = require('../../../functions/GlobalFunctions')
 
 const formatLargeNumber = functions.formatLargeNumber
 
@@ -94,7 +94,7 @@ function RollRarity(message) {
                 }
             }
     
-            const RollChannel = message.guild.channels.cache.get(settingsJSON.Channels["Roll-Channel"]);
+            const RollChannel = message.guild.channels.cache.get(SettingsJSON.Channels["Roll-Channel"]);
     
             if (RollChannel instanceof Discord.TextChannel) {
                 const Embed = new Discord.EmbedBuilder()
@@ -102,13 +102,13 @@ function RollRarity(message) {
                     .setDescription(`\`${message.author?.globalName}\`` +
                         `\nRolled: ${SelectedRarity}` +
                         `\n\nChance: ${RawPercentage}%` +
-                        `\nwith <:CloverGreen:1273876673980534856> ${ModifiedPercentage}%` +
+                        `\nwith <:GreenClover:1280028333043617844> ${ModifiedPercentage}%` +
                         `\n\nValue: 1 in ${formatLargeNumber(Index)}` +
-                        `\nwith <:CloverGreen:1273876673980534856> 1 in ${ModifiedIndex}` +
-                        `\n\nModifiers<:Settings:1273951989134397440>:` +
-                        `\n\nLuck: ${Luck} <:CloverGreen:1273876673980534856>` +
-                        `\nBulk: ${Bulk} <:Card:1273951765246771255>` +
-                        `\n\nID ${ID}/${Raritys.length} <:Scroll:1273880004588994610>`
+                        `\nwith <:GreenClover:1280028333043617844> 1 in ${ModifiedIndex}` +
+                        `\n\nModifiers<:Settings:1280029107614122079>:` +
+                        `\n\nLuck: ${Luck} <:GreenClover:1280028333043617844>` +
+                        `\nBulk: ${Bulk} <:Bulk:1280030882786443346>` +
+                        `\n\nID ${ID}/${Raritys.length} <:Index:1280030904470863883>`
                 );
                 
                 try {

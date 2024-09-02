@@ -1,31 +1,31 @@
-let Bulk = 1000000000;  // Example large bulk value
+let Bulk = 100;  // Example large bulk value
+let luck = 1
 
 const Raritys = [
-    [["Common       "], [1, 5], ["4372443329"], [1]],
-    [["Uncommon     "], [1, 25], ["5823491740"], [2]],
-    [["Epic         "], [1, 500], ["9372640185"], [3]],
-    [["Rare         "], [1, 200], ["1047385926"], [4]],
-    [["Legendary    "], [1, 1000], ["6730192854"], [5]],
-    [["Mythical     "], [1, 5000], ["2395847160"], [6]],
-    [["Ancient      "], [1, 10000000000], ["8473291056"], [7]],
+    // [Name, Chance, RoleID, Index, Secret]
+    ["Common       ", 5,     "4372443329", 1, false],
+    ["Uncommon     ", 25,    "5823491740", 2, false],
+    ["Epic         ", 500,   "9372640185", 3, false],
+    ["Rare         ", 200,   "1047385926", 4, false],
+    ["Legendary    ", 1000,  "6730192854", 5, false],
+    ["Mythical     ", 5000,  "2395847160", 6, false],
+    ["Ancient      ", 10000, "8473291056", 7, false],
 ];
 
-// Helper function to generate a random number with normal distribution (Gaussian)
 function randomGaussian(mean, stddev) {
-    let u = 0, v = 0;
-    while (u === 0) u = Math.random(); // Converting [0,1) to (0,1)
-    while (v === 0) v = Math.random();
-    let standardNormal = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    let u = Math.random(), v = Math.random()
+    let standardNormal = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2 * Math.PI * v);
     return mean + stddev * standardNormal;
 }
 
-let RollRarity = (RariyArray, bulkSize) => {
+let RollRarity = (RariyArray, bulkSize, luck) => {
     let totalWeight = 0;
     let weightFractions = [];
 
-    // Calculate the fraction for each rarity and the total weight
+    // Calculate total weight fractions
     RariyArray.forEach(rarity => {
-        let weight = rarity[1][1];
+        let weight = Math.max(1, rarity[1] / luck)
+
         let fraction = 1 / weight;
         totalWeight += fraction;
         weightFractions.push(fraction);
@@ -33,23 +33,53 @@ let RollRarity = (RariyArray, bulkSize) => {
 
     let rarityCounts = {};
 
-    // Compute the count for each rarity using random variation based on the bulk size
+    // Calculate expected counts and actual counts
+    let totalGenerated = 0;
     RariyArray.forEach((rarity, index) => {
-        let rarityName = rarity[0][0].trim();
+        let rarityName = rarity[0];
         let probability = weightFractions[index] / totalWeight;
-        let expectedCount = probability * bulkSize;  // Expected count based on probability
+        let expectedCount = probability * bulkSize;
 
-        // Introduce random variation around the expected count
-        // We use sqrt(expectedCount) as a rough estimate for the standard deviation
-        let count = Math.max(0, Math.round(randomGaussian(expectedCount, Math.sqrt(expectedCount)))); // Ensure no negative counts
 
+        // Limit randomness to prevent extreme deviations
+        let count = Math.max(0, Math.round(randomGaussian(expectedCount, Math.sqrt(expectedCount))));
         rarityCounts[rarityName] = count;
+        totalGenerated += count;
+
     });
 
-    // Convert the result to the output format
-    let output = Object.keys(rarityCounts).map(rarity => `${rarity} ${rarityCounts[rarity]}x`);
+    // Adjust counts to match the desired bulk size
+    let adjustmentFactor = bulkSize / totalGenerated;
+    let adjustedCounts = {};
+    let adjustedTotal = 0;
 
-    console.log(output.join("\n"));
+    Object.keys(rarityCounts).forEach(rarity => {
+        let adjustedCount = Math.round(rarityCounts[rarity] * adjustmentFactor);
+        adjustedCounts[rarity] = adjustedCount;
+        adjustedTotal += adjustedCount;
+    });
+
+    // Correct any rounding errors to ensure the exact bulk size
+    let difference = bulkSize - adjustedTotal;
+    if (difference !== 0) {
+        let keys = Object.keys(adjustedCounts);
+        for (let i = 0; i < Math.abs(difference); i++) {
+            let key = keys[i % keys.length];
+            adjustedCounts[key] += difference > 0 ? 1 : -1;
+        }
+    }
+
+    // Convert result to the output format
+    let output = Object.keys(adjustedCounts).map(rarity => `${rarity} ${adjustedCounts[rarity]}x`);
+
+    return [
+        output, 
+        `Bulks Rolled: ${bulkSize} from ${bulkSize}`, 
+        `Accuracy: 100% `
+    ];
 };
 
-RollRarity(Raritys, Bulk);
+
+
+// Example of using the function
+console.log(RollRarity(Raritys, Bulk, luck))
