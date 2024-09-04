@@ -13,7 +13,7 @@ function DataTemplate(message) {
         let Template = {
             MessageBot: {
                 LevelTab: {
-                    xp: 0,
+                    xp: 1,
                     level: 1,
                     ReqXP: 5,
                 },

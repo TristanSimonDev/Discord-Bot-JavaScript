@@ -14,11 +14,13 @@ const ParsedDataBase = JSON.parse(data);
 function DataBase(message) {
     if (message instanceof Discord.Message) {
 
-        ParsedDataBase[message.author.id] = dataTemplate.RefreshDataTable(message)
+        
 
         if (!ParsedDataBase[message.author.id]) {
             ParsedDataBase[message.author.id] = dataTemplate.DataTemplate(message)
-        }
+        } else {ParsedDataBase[message.author.id] = dataTemplate.RefreshDataTable(message)}
+
+        
 
         const updatedData = JSON.stringify(ParsedDataBase, null, 2);
 
