@@ -86,10 +86,7 @@ function RollRarity(message) {
                     SelectedRarity = RArray[i][0][0]; // The Name
                     Index = RArray[i][1][1];
                     ID = RArray[i][3];
-                    ModifiedPercentage = NewRarityArray[i] * 100;
                     RawPercentage = (RArray[i][1][0] / RArray[i][1][1]) * 100;
-                    ModifiedIndex = RArray[i][1][1] / Luck;
-                    if (ModifiedIndex < 1) ModifiedIndex = 1;
                     break;
                 }
             }
@@ -102,19 +99,22 @@ function RollRarity(message) {
                     .setDescription(`\`${message.author?.globalName}\`` +
                         `\nRolled: ${SelectedRarity}` +
                         `\n\nChance: ${RawPercentage}%` +
-                        `\nwith <:GreenClover:1280028333043617844> ${ModifiedPercentage}%` +
-                        `\n\nValue: 1 in ${formatLargeNumber(Index)}` +
-                        `\nwith <:GreenClover:1280028333043617844> 1 in ${ModifiedIndex}` +
+                        `\nValue: 1 in ${formatLargeNumber(Index)}` +
                         `\n\nModifiers<:Settings:1280029107614122079>:` +
                         `\n\nLuck: ${Luck} <:GreenClover:1280028333043617844>` +
                         `\nBulk: ${Bulk} <:Bulk:1280030882786443346>` +
                         `\n\nID ${ID}/${Raritys.length} <:Index:1280030904470863883>` +
-                        `\n\nBoost<:BulkPotion:1280029914330042388><:LuckPotion:1280029881601626232><:PotionBlueStroke:1280029859749564416>:`
+                        `\n\nBoost<:LuckPotion:1280029881601626232><:BulkPotion:1280029914330042388><:PotionBlueStroke:1280029859749564416>:` +
+                        `\n\nLuck<:LuckPotion:1280029881601626232>:` +
+                        `\nBulk<:BulkPotion:1280029914330042388>:` +
+                        `\nI dont know<:PotionBlueStroke:1280029859749564416>:`
+
+                        
                 );
                 
                 try {
                     RollChannel.send({ embeds: [Embed] });
-                    return `Rolled: ${SelectedRarity} ID ${ID}: ${RawPercentage}% [${ModifiedPercentage}%] the Chance was 1 in ${formatLargeNumber(Index)} [1 in ${ModifiedIndex}] with Luck: ${formatLargeNumber(Luck)}`;
+                    return `Rolled: ${SelectedRarity} ID ${ID}: ${RawPercentage}% the Chance was 1 in ${formatLargeNumber(Index)} with Luck: ${formatLargeNumber(Luck)}`;
                 } catch (error) {
                     console.error(error)
                 }

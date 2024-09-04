@@ -9,7 +9,6 @@ const data = fs.readFileSync(DBpath, "utf8");
 
 const ParsedDataBase = JSON.parse(data);
 
-console.log(ParsedDataBase)
 
 
 function DataBase(message) {

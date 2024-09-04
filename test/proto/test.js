@@ -1,5 +1,5 @@
+let arr = ["hello", "hello", "hi"]
 
+const output = arr.map(word => word[arr] + "x")
 
-const test = { "test":  ["hi", 1] }
-
-console.log(test.test[0])
+console.log(output)

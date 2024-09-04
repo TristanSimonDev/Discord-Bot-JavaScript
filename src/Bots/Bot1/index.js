@@ -12,16 +12,9 @@ const client = new Discord.Client({
 
 client.on('ready', () => {
     console.log('Discord client ready');
-   
-    const Pingcommand = new Discord.SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Replies with Pong!')
-        
-
-    client.application.commands.create(Pingcommand, process.env.GuildID);
 
     // Uncomment these lines if you want to load reactions and slash commands
-    // ReactionLoader.LoadReactions(client);
+    ReactionLoader.LoadReactions(client);
 });
 
 client.on('messageCreate', async (message) => {
@@ -35,13 +28,13 @@ client.on('messageReactionAdd', async (reaction, user) => {
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
      
-    if (interaction.commandName === 'ping') {
+    /*
+    if (interaction.commandName === 'test') {
         interaction.reply({
             content: 'Pong!',
         })
     }
-
-
+    */
 
 })
 

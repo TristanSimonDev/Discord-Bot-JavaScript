@@ -1,5 +1,5 @@
-let Bulk = 100;  // Example large bulk value
-let luck = 1
+let Bulk = 24;  // Example large bulk value
+let luck = 5.6
 
 const Raritys = [
     // [Name, Chance, RoleID, Index, Secret]
@@ -13,7 +13,8 @@ const Raritys = [
 ];
 
 function randomGaussian(mean, stddev) {
-    let u = Math.random(), v = Math.random()
+    if (stddev <= 0) return mean;  // Prevent issues with non-positive stddev
+    let u = Math.random(), v = Math.random();
     let standardNormal = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2 * Math.PI * v);
     return mean + stddev * standardNormal;
 }

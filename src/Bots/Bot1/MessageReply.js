@@ -8,12 +8,14 @@ const DataBaseCalculation = require('../../../.vscode/DB/DataCalculation')
 async function MessageReply(message) {
     if (message instanceof Discord.Message) {
         if (message.author.bot) return;
+
         const args = message.content.split(" ")
 
         DataBaseCalculation.DataBase(message)
+
+
         
-    } else {
-        console.error('The provided object is not a Discord.Message.');
+        
     }
 }
 
