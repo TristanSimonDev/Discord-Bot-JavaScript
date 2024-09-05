@@ -16,19 +16,15 @@ const ReactionEvent = async (reaction, user) => {
             ReactionRoleChannel: reaction.message.guild?.channels.cache.get(SettingsJSON.Channels['ReactionRole-Channel']),
             RulesChannel: reaction.message.guild.channels.cache.get(SettingsJSON.Channels['Rules-Channel']),
         }
-        class ReactionEnvent {
-            static ReactionRoleEmojis = () => {
-                if (reaction.message.channelId == Channels.ReactionRoleChannel && ReactionRoleEmojis.includes(reaction.emoji.name)) {
-                    console.log(reaction.emoji.name)
-                    Channels.ReactionRoleLogChannel.send(`User: ${user.globalName} with Reaction ${reaction.emoji.name}`)
-                }
-            }
-        }
+
 
         let ReactionEvents = {
             "✅": (reaction.message.channelId == Channels.RulesChannel && RulesEmoji.includes(reaction.emoji.name)) ? 
-                Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`) && console.log(reaction.emoji.name) : console.error("An error on RulesReaction")
+                Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`) && console.log(reaction.emoji.name) : console.error("An error on RulesReaction"),
 
+            ReactionRoleEmojis: reaction.message.channelId == Channels.ReactionRoleChannel && ReactionRoleEmojis.includes(reaction.emoji.name) ?
+                Channels.ReactionRoleLogChannel.send(`User: ${user.globalName} with Reaction ${reaction.emoji.name}`) && console.log(reaction.emoji.name) : ""
+                
         }
 
         //run the reactionEvent dynamicly with the help of the ReactionEvents
