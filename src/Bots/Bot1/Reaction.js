@@ -23,22 +23,16 @@ const ReactionEvent = async (reaction, user) => {
                     Channels.ReactionRoleLogChannel.send(`User: ${user.globalName} with Reaction ${reaction.emoji.name}`)
                 }
             }
-
-            static RulesEmojis = () => {
-                if (reaction.message.channelId == Channels.RulesChannel && RulesEmoji.includes(reaction.emoji.name)) {
-                    console.log(reaction.emoji.name)
-                    Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`)
-                }
-                
-            }
         }
-        
-        const EventFunctions = [
-            ReactionEnvent.ReactionRoleEmojis(),
-            ReactionEnvent.RulesEmojis()
-        ]
-        
-        EventFunctions.forEach(element => {});
+
+        let ReactionEvents = {
+            "✅": (reaction.message.channelId == Channels.RulesChannel && RulesEmoji.includes(reaction.emoji.name)) ? 
+                Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`) && console.log(reaction.emoji.name) : console.error("An error on RulesReaction")
+
+        }
+
+        //run the reactionEvent dynamicly with the help of the ReactionEvents
+        ReactionEvents[reaction.emoji.name]
         
         
     
