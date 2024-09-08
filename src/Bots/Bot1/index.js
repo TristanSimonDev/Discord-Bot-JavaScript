@@ -1,20 +1,36 @@
 const Discord = require('discord.js');
 
 const MessageReply = require('./MessageReply');
-const envLoader = require('../../../modules/envLoader');
 const ReactionLoader = require('./Load/load');
 const Reactions = require('./Reaction');
+const dotenv = require('dotenv').config()
 
-const client = new Discord.Client({
-    intents: [3276799],  // Adjust intents as needed for your bot's functionality
-});
+const fs = require('fs')
+
+
+
+
+
+const client = new Discord.Client({ intents: [3276799], });  // Adjust intents as needed for your bot's functionality
+
+client.commands = new Discord.Collection();
+
+    let commands = []
+    const commandFiles = fs.readdirSync('./src/Bots/Bot1/cmd').filter(file => file.endsWith('.js'));
+
+    for (const file of commandFiles) {
+	const command = require(`./cmd/${file}`);
+	if ('data' in command && 'execute' in command) {
+		client.commands.set(command.data.name, command)
+	}
+}
 
 
 client.on('ready', () => {
-    console.log('Discord client ready');
+    console.log('MessageBot ready');
 
-    // Uncomment these lines if you want to load reactions and slash commands
     ReactionLoader.LoadReactions(client);
+
 });
 
 client.on('messageCreate', async (message) => {
@@ -25,18 +41,28 @@ client.on('messageReactionAdd', async (reaction, user) => {
     Reactions.ReactionEvent(reaction, user);
 });
 
-client.on('interactionCreate', async (interaction) => {
+client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
-     
-    /*
-    if (interaction.commandName === 'test') {
-        interaction.reply({
-            content: 'Pong!',
-        })
-    }
-    */
 
-})
+	const command = interaction.client.commands.get(interaction.commandName);
+
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		return;
+	}
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+	}
+});
+
 
 
 client.on('disconnect', (event) => {
@@ -51,4 +77,6 @@ process.on('SIGINT', () => {
 });
 
 // Login to Discord
-client.login(envLoader.LoadEnvForChatBot());
+client.login(process.env.TokenForChatBot);
+
+
