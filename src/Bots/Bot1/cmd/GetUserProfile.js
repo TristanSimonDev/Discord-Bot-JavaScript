@@ -1,6 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js");
-const interactionEmbeds = require("../interactionEmbeds");
 
 module.exports = {
     data: new Discord.SlashCommandBuilder()
@@ -11,7 +9,7 @@ module.exports = {
                 .setName("id")
                 .setDescription("Enter the UserID")
                 .setRequired(true)
-        ),
+    ),
 
     async execute(interaction) {
         if (interaction instanceof Discord.CommandInteraction) {
