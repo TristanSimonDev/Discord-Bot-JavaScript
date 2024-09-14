@@ -11,7 +11,7 @@ const fs = require('fs')
 
 
 
-const client = new Discord.Client({ intents: [3276799], });  // Adjust intents as needed for your bot's functionality
+const client = new Discord.Client({ intents: [32767], });  // Adjust intents as needed for your bot's functionality
 
 client.commands = new Discord.Collection();
 
