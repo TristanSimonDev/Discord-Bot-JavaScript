@@ -31,6 +31,9 @@ module.exports = {
                 .setDescription("Why did you create this Role")
                 .setRequired(false)
                 .setMaxLength(100)
+    )
+        .setDefaultMemberPermissions(
+            Discord.PermissionFlagsBits.ManageRoles
         ),
     
     
