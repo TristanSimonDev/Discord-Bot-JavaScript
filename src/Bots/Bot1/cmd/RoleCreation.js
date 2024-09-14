@@ -46,7 +46,7 @@ module.exports = {
                 .setRequired(false)
                 .setMaxLength(100)
     )
-    .setDefaultMemberPermissions(Discord.PermissionFlagsBits.BanMembers),
+    .setDefaultMemberPermissions(null),
     
     
 
