@@ -23,21 +23,7 @@ module.exports = {
                     { name: "🟤", value: "Brown"},
                     { name: "🟡", value: "Yellow"},
                     { name: "🟠", value: "Orange"},
-                    { name: "🔴", value: "Red"},
-                    { name: "🔴", value: "Red"},
-                    { name: "🔴", value: "Red"},
-                    { name: "🔴", value: "Red"},
-                    { name: "🔴", value: "Red"},
-                    { name: "🔴", value: "Red"},
-                    { name: "🔴", value: "Red"},
-                    { name: "🔴", value: "Red"},
                 )  
-        )
-        .addStringOption(option =>
-            option
-                .setName("key")
-                .setDescription("To Prevent Caos if an Account got Hacked")
-                .setRequired(true)
         )
         .addStringOption(option => 
             option
@@ -45,17 +31,17 @@ module.exports = {
                 .setDescription("Why did you create this Role")
                 .setRequired(false)
                 .setMaxLength(100)
-    )
-    .setDefaultMemberPermissions(null),
+        ),
     
     
 
     async execute(interaction) {
         if (interaction instanceof Discord.CommandInteraction) {
             interaction.reply("Done")
+
             let RoleName = interaction.options.get("name").value
             let RoleColor = interaction.options.get("color").value
-            let Reason = interaction.options.get("reason").value
+            let Reason = interaction.options.get("reason") ? interaction.options.get("reason").value : ""
             interaction.guild.roles.create({name: RoleName, color: RoleColor, reason: Reason})
         }
     }
