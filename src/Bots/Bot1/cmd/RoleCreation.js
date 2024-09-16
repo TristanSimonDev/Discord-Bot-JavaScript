@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js");
+const Bot1Settings = require('../../../../modules/RequireBot1Settings')
 
 module.exports = {
     data: new Discord.SlashCommandBuilder()
@@ -32,20 +33,35 @@ module.exports = {
                 .setRequired(false)
                 .setMaxLength(100)
     )
+        //you can only create Roles if you have ManageRoles or Admin
         .setDefaultMemberPermissions(
-            Discord.PermissionFlagsBits.ManageRoles
+            Discord.PermissionFlagsBits.ManageRoles,
+            Discord.PermissionFlagsBits.Administrator
         ),
     
     
 
     async execute(interaction) {
         if (interaction instanceof Discord.CommandInteraction) {
-            interaction.reply("Done")
 
             let RoleName = interaction.options.get("name").value
             let RoleColor = interaction.options.get("color").value
-            let Reason = interaction.options.get("reason") ? interaction.options.get("reason").value : ""
-            interaction.guild.roles.create({name: RoleName, color: RoleColor, reason: Reason})
+            let Reason = interaction.options.get("reason") ? interaction.options.get("reason").value : "None"
+            let Permissions = Discord.PermissionFlagsBits.ViewChannel + Discord.PermissionFlagsBits.SendMessages
+
+            let role = await interaction.guild.roles.create({ name: RoleName, color: RoleColor, reason: Reason, permissions: Permissions })
+
+            const RoleCreationEmbed = new Discord.EmbedBuilder()
+                .setTitle(`Role Created ${Bot1Settings.Emojis.Sroll}`)
+                .setDescription(
+                    `Name: ${role.name}` +
+                    `\nID: ${role.id}` +
+                    `\nHexColor: ${role.hexColor}` +
+                    `\nBitPermissions: ${Object.values(role.permissions)}` +
+                    `\nReason: ${Reason}`
+                )
+
+            interaction.reply({ embeds: [RoleCreationEmbed] })
         }
     }
 };
