@@ -50,9 +50,5 @@
     "Messages": {
         "ReactionRole-Message": "1272092740951347324",
         "Rules-Message": "1255809402380746752"
-    },
-
-    "Test": {
-        "roles-emoji": ["hi","🟢"]
     }
 }
