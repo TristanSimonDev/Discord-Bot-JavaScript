@@ -16,8 +16,18 @@ module.exports = {
     async execute(interaction) {
         if (interaction instanceof Discord.CommandInteraction) {
             const TargetID = interaction.options.get("target").value
+            const User = await interaction.guild.members.fetch(TargetID)
+            console.log(TargetID)
+            const KickEmbed = new Discord.EmbedBuilder()
+                .setTitle(`User got Kicked ${Emojis.Flag}`)
+                .setDescription(
+                    `\nUser: \`${User.displayName}\`` +
+                    `\nNickmame: \`${User.user.tag}\`` +
+                    `\nID: \`${User.id}\`` 
 
-            interaction.reply(`${await interaction.guild.members.fetch(TargetID).user.tag} got Kicked from the Server ${Emojis.Sroll}`)
+                )
+
+            interaction.reply({ embeds: [KickEmbed] });
             interaction.guild.members.kick(TargetID)
         }
     }
