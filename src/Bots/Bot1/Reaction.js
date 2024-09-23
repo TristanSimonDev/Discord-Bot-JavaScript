@@ -20,7 +20,7 @@ const ReactionEvent = async (reaction, user) => {
 
         let Events = {
             RulesEmoji: (reaction.message.channelId == Channels.RulesChannel && RulesEmoji.includes(reaction.emoji.name)) ? 
-                Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`) && console.log(reaction.emoji.name) : console.error("An error on RulesReaction"),
+                Channels.RulesChannel.send(`User: ${user.globalName} accepted the Rules`) && console.log(reaction.emoji.name) : "",
 
             ReactionRoleEmojis: reaction.message.channelId == Channels.ReactionRoleChannel && ReactionRoleEmojis.includes(reaction.emoji.name) ?
                 Channels.ReactionRoleLogChannel.send(`User: ${user.globalName} with Reaction ${reaction.emoji.name}`) && console.log(reaction.emoji.name) : ""
