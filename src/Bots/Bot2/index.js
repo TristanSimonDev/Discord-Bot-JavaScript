@@ -1,11 +1,11 @@
 const Discord = require('discord.js')
-const envLoader = require('../../../modules/envLoader')
 
 const RollRarity = require('./Rarity')
 
+const req = require('../../../modules/require')
 
 
-const Client = new Discord.Client({
+const Client = new req.Discord.Client({
     intents: [3276799],
 })
 
@@ -21,4 +21,4 @@ Client.on('messageCreate', (message) => {
 
 
 
-Client.login(envLoader.LoadEnvForRarityBot())
+Client.login(process.env.TokenForRarityBot)

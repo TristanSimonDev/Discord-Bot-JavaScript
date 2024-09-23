@@ -1,7 +1,7 @@
 const Discord = require('../../../../modules/require').Discord
 const Emojis = require('../../../../modules/RequireBot1Settings').Emojis
 
-BanTimes = {
+const BanTimes = {
     "1": 60,                //1min
     "2": 180,               //3min
     "3": 300,               //5min
@@ -34,7 +34,22 @@ module.exports = {
     async execute(interaction) {
         if (interaction instanceof Discord.CommandInteraction) {
             const TargetID = interaction.options.get("target").value
-            const user = interaction.guild.members.fetch(TargetID)
+            const Guild = interaction.guild
+            const User = await interaction.guild.members.fetch(TargetID)
+
+            const BanEmbed = new Discord.EmbedBuilder()
+                .setTitle(`User got Banned ${Emojis.RedCross}`)
+                .setDescription(
+                    `\nUser: ||\`${User.displayName}\`||` +
+                    `\nTag: ||\`${User.user.tag}\`||` +
+                    `\nID: ||\`${User.id}\`||`
+                )
+
+            await Guild.members.ban(TargetID, {
+                reason: "Enter The Reason",
+            })
+
+            interaction.reply({ embeds: [BanEmbed] })
         }
     }
 }

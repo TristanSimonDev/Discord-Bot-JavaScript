@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 
-const MessageReply = require('./MessageReply');
 const ReactionLoader = require('./Load/load');
 const Reactions = require('./Reaction');
 const dotenv = require('dotenv').config()

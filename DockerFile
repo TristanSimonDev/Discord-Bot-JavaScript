@@ -12,3 +12,5 @@ COPY . .
 
 # Command to run both bots at once
 CMD ["npm", "run", "all"]
+
+# docker build -f DockerFile -t test .

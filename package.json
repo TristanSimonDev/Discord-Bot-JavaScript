@@ -1,10 +1,18 @@
 {
     "dependencies": {
+        "@discordjs/rest": "^2.4.0",
+        "discord-api-types": "^0.37.100",
         "discord.js": "^14.15.3",
         "dotenv": "^16.4.5",
         "express": "^4.19.2",
+        "glob": "^11.0.0",
+        "har-validator": "^5.1.5",
         "lint": "^0.8.19",
+        "loadash": "^1.0.0",
+        "mysql": "^2.18.1",
         "punycode": "^2.3.1",
+        "request": "^2.88.2",
+        "uuid": "^10.0.0",
         "ws": "^8.18.0"
     },
     "name": "dc-bot",
@@ -16,7 +24,8 @@
     },
     "scripts": {
         "Bot1": "node src/Bots/Bot1/index.js",
-        "Bot2": "node src/Bots/Bot2/index.js"
+        "Bot2": "node src/Bots/Bot2/index.js",
+        "all": "node src/Bots/Bot2/index.js & node src/Bots/Bot1/index.js"
     },
     "author": "",
     "license": "ISC",
