@@ -34,10 +34,6 @@ client.on('ready', () => {
 
 });
 
-client.on('messageCreate', async (message) => {
-    MessageReply.MessageReply(message);
-});
-
 client.on('messageReactionAdd', async (reaction, user) => {
     Reactions.ReactionEvent(reaction, user);
 });
