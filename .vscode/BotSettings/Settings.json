@@ -22,7 +22,8 @@
         "Verify-Channel": "1255801973668843580",
         "VerifyLog-Channel": "1272140872875638804",
         "Roll-Channel": "1273240171717988386",
-        "Rules-Channel": "1255512145341186118"
+        "Rules-Channel": "1255512145341186118",
+        "CreateTicketChannel": "1287783339922559079"
     },
     "Roles": {
         "Verify-Role": "1258372497364095018"
