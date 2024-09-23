@@ -4,6 +4,8 @@ const ReactionLoader = require('./Load/load');
 const Reactions = require('./Reaction');
 const dotenv = require('dotenv').config()
 
+const TicketInstruction = require('./TicketSystem/TicketSystem')
+
 const reloadcommands = require('./Commands')
 
 const fs = require('fs')
@@ -28,7 +30,8 @@ client.commands = new Discord.Collection();
 
 
 client.on('ready', () => {
-    console.log('MessageBot ready');
+	console.log('MessageBot ready');
+	TicketInstruction.SendTicketInstructions(client)
 	reloadcommands.ListCommands()
     ReactionLoader.LoadReactions(client);
 
