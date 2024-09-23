@@ -3,6 +3,8 @@ const Discord = require('../../../../modules/require').Discord
 
 const TicketChannelID = Settings.Channels.CreateTicketChannel
 
+const TicketEmbeds = require('./TicketEmbed')
+
 function SendTicketInstructions(Client) {
 
     if (Client instanceof Discord.Client) {
@@ -12,10 +14,9 @@ function SendTicketInstructions(Client) {
 
         try {
 
-            TicketChannel.send("||hi||")
+            TicketChannel.send({ embeds: [TicketEmbeds.InstructionEmbed()] })
 
         } catch (err) {console.error(err)}
-
 
     }
 
