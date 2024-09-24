@@ -1,5 +1,5 @@
 const Settings = require('../../../../modules/RequireBot1Settings')
-const Discord = require('../../../../modules/require').Discord
+const Discord = require('discord.js');
 
 const TicketChannelID = Settings.Channels.CreateTicketChannel
 
