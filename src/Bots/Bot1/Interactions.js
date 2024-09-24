@@ -31,11 +31,12 @@ async function TicketButtonInteraction(interaction) {
 		function ReportBug(interaction) {
 			
 			if (interaction instanceof Discord.ButtonInteraction) {
-				interaction.reply("Done")
 
 				interaction.guild.channels.create({
-					name: "Ticket-0001",
-					channels: [{type: Discord.ChannelType.GuildText}]
+					name: `ticket-${Math.floor(Math.random() * 10000)}`,
+					channels: [{ type: Discord.ChannelType.GuildText }],
+					reason: "Bug",
+					parent: "1287783226558906471"
 				})
 			}
  		}
