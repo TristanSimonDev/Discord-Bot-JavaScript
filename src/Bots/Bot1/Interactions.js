@@ -21,7 +21,17 @@ async function SlashcommandInteraction(interaction) {
 
 async function TicketButtonInteraction(interaction) {
 	if (interaction instanceof Discord.ButtonInteraction && interaction.channelId == channels.CreateTicketChannel) {
-		console.log("why")
+		
+		const Types = {
+			"ticket-report-bug": ReportBug()
+		}	
+		
+		Types[interaction.customId]
+
+		function ReportBug() {
+			console.log("tets")
+		}
+
 	}
 }
 
