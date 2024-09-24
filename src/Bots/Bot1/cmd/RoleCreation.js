@@ -52,7 +52,7 @@ module.exports = {
             let role = await interaction.guild.roles.create({ name: RoleName, color: RoleColor, reason: Reason, permissions: Permissions })
 
             const RoleCreationEmbed = new Discord.EmbedBuilder()
-                .setTitle(`Role Created ${Bot1Settings.Emojis.Sroll}`)
+                .setTitle(`Role Created ${Bot1Settings.Emojis.Scroll}`)
                 .setDescription(
                     `Name: ${role.name}` +
                     `\nID: ${role.id}` +
