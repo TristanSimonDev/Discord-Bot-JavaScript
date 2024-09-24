@@ -1,4 +1,4 @@
-const Discord = require('../../../../modules/require').Discord
+const Discord = require('discord.js');
 const Emojis = require('../../../../modules/RequireBot1Settings').Emojis
 
 function InstructionEmbed() {
@@ -15,7 +15,7 @@ function InstructionEmbed() {
         })
     
     const confirm = new Discord.ButtonBuilder()
-        .setCustomId('confirm')
+        .setCustomId('ticket-report-bug')
         .setLabel('Report Bug 📩')
         .setStyle(Discord.ButtonStyle.Secondary)
         
