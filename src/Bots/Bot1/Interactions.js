@@ -23,14 +23,22 @@ async function TicketButtonInteraction(interaction) {
 	if (interaction instanceof Discord.ButtonInteraction && interaction.channelId == channels.CreateTicketChannel) {
 		
 		const Types = {
-			"ticket-report-bug": ReportBug()
+			"ticket-report-bug": ReportBug(interaction)
 		}	
 		
 		Types[interaction.customId]
 
-		function ReportBug() {
-			console.log("tets")
-		}
+		function ReportBug(interaction) {
+			
+			if (interaction instanceof Discord.ButtonInteraction) {
+				interaction.reply("Done")
+
+				interaction.guild.channels.create({
+					name: "Ticket-0001",
+					channels: [{type: Discord.ChannelType.GuildText}]
+				})
+			}
+ 		}
 
 	}
 }
