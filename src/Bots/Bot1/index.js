@@ -43,9 +43,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
 });
 
 client.on('interactionCreate', async interaction => {
-	if (interaction.isButton) {
-		if (interaction.customId == "confirm") {console.log("finally")}
-	}
 
 	interactions.SlashcommandInteraction(interaction)
 	interactions.TicketButtonInteraction(interaction)
