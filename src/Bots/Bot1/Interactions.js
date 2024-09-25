@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const channels = require('../../../.vscode/Bot1Settings/channels.json')
+const GenerateTicketID = require('../../../functions/Keys').GenerateTicketKey
+
 
 
 async function SlashcommandInteraction(interaction) {
@@ -20,6 +22,7 @@ async function SlashcommandInteraction(interaction) {
 }
 
 async function TicketButtonInteraction(interaction) {
+	let TicketID = GenerateTicketID()
 	if (interaction instanceof Discord.ButtonInteraction && interaction.channelId == channels.CreateTicketChannel) {
 		
 		const Types = {
@@ -31,13 +34,15 @@ async function TicketButtonInteraction(interaction) {
 		function ReportBug(interaction) {
 			
 			if (interaction instanceof Discord.ButtonInteraction) {
-
+				
 				interaction.guild.channels.create({
-					name: `ticket-${Math.floor(Math.random() * 10000)}`,
+					name: `ticket_${TicketID}`,
 					channels: [{ type: Discord.ChannelType.GuildText }],
 					reason: "Bug",
 					parent: "1287783226558906471"
 				})
+
+				interaction.reply(`Created Ticked ||${TicketID}||`)
 			}
  		}
 
