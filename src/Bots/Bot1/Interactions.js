@@ -31,18 +31,29 @@ async function TicketButtonInteraction(interaction) {
 		
 		Types[interaction.customId]
 
-		function ReportBug(interaction) {
+		async function ReportBug(interaction) {
 			
 			if (interaction instanceof Discord.ButtonInteraction) {
-				
-				interaction.guild.channels.create({
+
+				let TicketChannel = await interaction.guild.channels.create({
 					name: `ticket_${TicketID}`,
 					channels: [{ type: Discord.ChannelType.GuildText }],
 					reason: "Bug",
 					parent: "1287783226558906471"
 				})
+		
 
-				interaction.reply(`Created Ticked ||${TicketID}||`)
+				const TicketEmbed = new Discord.EmbedBuilder() 
+					.setTitle(`New Ticket Created`)
+					.setDescription(
+						`\n\nUser: \`${interaction.user.tag}\`` +
+						`\nGlobalName: \`${interaction.user.globalName}\`` +
+						`\nUserID: \`${interaction.user.id}\`` +
+						`\n\nTickedID: \`${TicketID}\`` +
+						`\nTickedChannelID: \`${TicketChannel.id}\``
+					)
+
+				interaction.reply({ embeds: [TicketEmbed] })
 			}
  		}
 
