@@ -77,15 +77,17 @@ async function TicketButtonInteraction(interaction) {
 				
 				//write json
 				ParsedTicketChannels[TicketID] = TicketID
-				//send the TicketInfoEmbed
-				let ReplyWithTicketInfoEmbed = await interaction.reply({ embeds: [TicketEmbed] })
+
+				//send the TicketInfoEmbed Priveate to the User beacause of emphal
+				let ReplyWithTicketInfoEmbed = await interaction.reply({ embeds: [TicketEmbed], ephemeral: true})
+
 				//wait 5 seconds
 				await sleep(5000)
-				//Delete the TicketInfoEmbed
 
+				//Delete the TicketInfoEmbed
 				ReplyWithTicketInfoEmbed.delete()
 				
-
+				//send the Info to the json file with the Ticked id as a selector
 				fs.writeFileSync(TicketChannels, JSON.stringify(ParsedTicketChannels, null, 2), 'utf-8');
 			}
  		}
