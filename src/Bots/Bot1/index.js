@@ -4,7 +4,7 @@ const ReactionLoader = require('./Load/load');
 const Reactions = require('./Reaction');
 const dotenv = require('dotenv').config()
 
-const TicketInstruction = require('./TicketSystem/TicketSystem')
+const TicketInstruction = require('./TicketSystem/SendTicketIndroduction')
 
 const reloadcommands = require('./Commands')
 const interactions = require('./Interactions')
