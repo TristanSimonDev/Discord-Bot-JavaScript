@@ -1,8 +1,12 @@
 const Discord = require('discord.js');
 const channels = require('../../../.vscode/Bot1Settings/channels.json')
 const GenerateTicketID = require('../../../functions/Keys').GenerateTicketKey
-const fs = require('fs');
+
 let TicketChannels = '.vscode/Bot1Settings/Tickets/TicketChannels.json'
+let TicketSettings = '.vscode/Bot1Settings/Tickets/Ticket-Settings.json'
+const fs = require('fs');
+
+
 
 const data = fs.readFileSync(TicketChannels, 'utf-8')
 
@@ -39,6 +43,9 @@ async function TicketButtonInteraction(interaction) {
 		}	
 		
 		//Choose the Function to deal with
+
+		// for example if the Coustom id is "ticket-report-bug" it will run the function
+		//ReportBug because its Selecting Dynamicly : Types[ticket-report-bug] = ReportBug(interaction)
 		Types[interaction.customId]
 
 
@@ -51,10 +58,10 @@ async function TicketButtonInteraction(interaction) {
 					name: `ticket_${TicketID}`,
 					channels: [{ type: Discord.ChannelType.GuildText }],
 					reason: "Bug",
-					parent: "1287783226558906471"
+					parent: "1287783226558906471" //Parent is the Channle Category for this it is Support
 				})
 				
-				//create Embed
+				//create the TicketInfoEmbed
 				const TicketEmbed = new Discord.EmbedBuilder() 
 					.setTitle(`New Ticket Created`)
 					.setDescription(
@@ -75,6 +82,7 @@ async function TicketButtonInteraction(interaction) {
 				//wait 5 seconds
 				await sleep(5000)
 				//Delete the TicketInfoEmbed
+
 				ReplyWithTicketInfoEmbed.delete()
 				
 
