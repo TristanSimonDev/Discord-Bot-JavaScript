@@ -44,8 +44,19 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
 client.on('interactionCreate', async interaction => {
 
-	interactions.SlashcommandInteraction(interaction)
-	interactions.TicketButtonInteraction(interaction)
+    console.log(interaction)
+    
+    let InteractionTypes = {
+        "ButtonInteraction": interactions.ButtonInteraction(interaction),
+        "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction) //Slashcommand
+    }
+    
+    //Select Interaction Dynamicly
+    InteractionTypes[interaction]
+    
+
+	
+	
 	
 });
 
