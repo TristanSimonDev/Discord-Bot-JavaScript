@@ -16,7 +16,7 @@ function SendTicketInstructions(Client) {
     if (Client instanceof Discord.Client) {
 
         
-        //get the TickedChannle
+        //get the TicketChannle
         const TicketChannel = Client.channels.cache.get(TicketChannelID)
 
         if (!ParsedTicketSettings.Settings["Instructions-In-Channel"]) {
