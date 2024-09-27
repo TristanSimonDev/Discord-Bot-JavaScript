@@ -3,7 +3,6 @@ const channels = require('../../../.vscode/Bot1Settings/channels.json')
 const GenerateTicketID = require('../../../functions/Keys').GenerateTicketKey
 
 let TicketChannels = '.vscode/Bot1Settings/Tickets/TicketChannels.json'
-let TicketSettings = '.vscode/Bot1Settings/Tickets/Ticket-Settings.json'
 const fs = require('fs');
 
 
@@ -50,7 +49,7 @@ async function TicketButtonInteraction(interaction) {
 
 		// for example if the Coustom id is "ticket-report-bug" it will run the function
 		//ReportBug because its Selecting Dynamicly : Types[ticket-report-bug] = ReportBug(interaction)
-		Types[interaction.customId]
+		await Types[interaction.customId]
 
 
 		//first function
@@ -76,7 +75,10 @@ async function TicketButtonInteraction(interaction) {
 						`\nTickedChannelID: \`${TicketChannel.id}\`` +
 						//get the Timestamp you need to do / 1000 to get the seconds beacause Typpicly you dont want to get the ms
 						`\n\nOpend on <t:${Timestamp}>`) 
-					.setFooter({text: `Author: Tristan | S.`})
+					.setFooter({ text: `Author: Tristan | S.` })
+				
+				//If you open a Ticket you get a info Embed in the Created Channel
+				const InfoEmbedInTicketChannle = new Discord.EmbedBuilder()
 					
 				
 				//write json
@@ -90,16 +92,19 @@ async function TicketButtonInteraction(interaction) {
 				}
 
 				//send the TicketInfoEmbed Priveate to the User beacause of emphal
-				let ReplyWithTicketInfoEmbed = await interaction.reply({ embeds: [TicketEmbed], ephemeral: true})
+				let ReplyWithTicketInfoEmbed = await interaction.reply({ embeds: [TicketEmbed], ephemeral: true })
+				
+				//send the Info to the json file with the Ticked id as a selector
+				fs.writeFileSync(TicketChannels, JSON.stringify(ParsedTicketChannels, null, 2), 'utf-8');
 
-				//wait 5 seconds
-				await sleep(5000)
+				//wait 100 seconds
+				await sleep(100000)
 
 				//Delete the TicketInfoEmbed
 				ReplyWithTicketInfoEmbed.delete()
 				
-				//send the Info to the json file with the Ticked id as a selector
-				fs.writeFileSync(TicketChannels, JSON.stringify(ParsedTicketChannels, null, 2), 'utf-8');
+				
+				
 			}
  		}
 
