@@ -1,4 +1,4 @@
-const Chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const Chars = "1234567890abcdefghijklmnopqrstuvwxyz"
 
 
 function GenerateTicketKey() {
