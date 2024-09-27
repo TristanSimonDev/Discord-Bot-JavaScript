@@ -79,6 +79,16 @@ async function TicketButtonInteraction(interaction) {
 				
 				//If you open a Ticket you get a info Embed in the Created Channel
 				const InfoEmbedInTicketChannle = new Discord.EmbedBuilder()
+					.setTitle(`Ticket Created\n\nInfo:`)
+					.setDescription(
+						`\n\nUser: \`${interaction.user.tag}\`` +
+						`\nGlobalName: \`${interaction.user.globalName}\`` +
+						`\nUserID: \`${interaction.user.id}\`` +
+						`\n\nTickedID: \`${TicketID}\`` +
+						`\nTickedChannelID: \`${TicketChannel.id}\`` +
+						//get the Timestamp you need to do / 1000 to get the seconds beacause Typpicly you dont want to get the ms
+						`\n\nOpend on <t:${Timestamp}>`
+					)
 					
 				
 				//write json
@@ -95,7 +105,10 @@ async function TicketButtonInteraction(interaction) {
 				let ReplyWithTicketInfoEmbed = await interaction.reply({ embeds: [TicketEmbed], ephemeral: true })
 				
 				//send the Info to the json file with the Ticked id as a selector
-				fs.writeFileSync(TicketChannels, JSON.stringify(ParsedTicketChannels, null, 2), 'utf-8');
+				fs.writeFileSync(TicketChannels, JSON.stringify(ParsedTicketChannels, null, 4), 'utf-8');
+
+				//Send the Info Embed in the TicketChannel
+				SendTicketChannel.send({ embeds: [InfoEmbedInTicketChannle] })
 
 				//wait 100 seconds
 				await sleep(100000)

@@ -1,5 +1,5 @@
 {
-    "Settings": {
-        "Instructions-In-Channel": false
-    }
+  "Settings": {
+    "Instructions-In-Channel": true
+  }
 }

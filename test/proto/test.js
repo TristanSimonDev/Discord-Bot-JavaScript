@@ -1,5 +1,3 @@
-let arr = ["hello", "hello", "hi"]
+let arr = [1, 2, 3, 4, 5]
 
-const output = arr.map(word => word[arr] + "x")
-
-console.log(output)
+console.log(...arr)

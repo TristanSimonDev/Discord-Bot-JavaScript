@@ -5,7 +5,6 @@ const TicketChannelID = Settings.Channels.CreateTicketChannel
 const TicketEmbeds = require('./BuildTickedIntroductionEmbed')
 
 const fs = require('fs');
-const { json } = require('express');
 const TicketSettings = '.vscode/Bot1Settings/Tickets/Ticket-Settings.json'
 
 const data = fs.readFileSync(TicketSettings, 'utf-8')
@@ -27,7 +26,7 @@ function SendTicketInstructions(Client) {
                 
                 //change the Sended Instruction to true to prevent multiple Instrunctions
                 ParsedTicketSettings.Settings["Instructions-In-Channel"] = true
-                fs.write(TicketSettings, JSON.stringify(ParsedTicketSettings, null, 2))
+                fs.writeFileSync(TicketSettings, JSON.stringify(ParsedTicketSettings, null, 2), 'utf-8');
 
             } catch (err) {console.error(err)}
         } else {console.warn("Ticketinstruction is already in thhe channel")}
