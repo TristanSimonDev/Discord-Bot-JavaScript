@@ -35,9 +35,13 @@ async function SlashcommandInteraction(interaction) {
 }
 
 async function TicketButtonInteraction(interaction) {
-	let TicketID = GenerateTicketID()
+
 	if (interaction instanceof Discord.ButtonInteraction && interaction.channelId == channels.CreateTicketChannel) {
+
+		let Timestamp = Math.floor(Date.now() / 1000)
+		let TicketID = GenerateTicketID()
 		
+
 		const Types = {
 			"ticket-report-bug": ReportBug(interaction)
 		}	
@@ -71,12 +75,19 @@ async function TicketButtonInteraction(interaction) {
 						`\n\nTickedID: \`${TicketID}\`` +
 						`\nTickedChannelID: \`${TicketChannel.id}\`` +
 						//get the Timestamp you need to do / 1000 to get the seconds beacause Typpicly you dont want to get the ms
-						`\n\nOpend on <t:${Math.floor(Date.now() / 1000)}>`) 
+						`\n\nOpend on <t:${Timestamp}>`) 
 					.setFooter({text: `Author: Tristan | S.`})
 					
 				
 				//write json
-				ParsedTicketChannels[TicketID] = TicketID
+				ParsedTicketChannels[TicketID] = {
+					"User": interaction.user.tag,
+					"GlobalName": interaction.user.globalName,
+					"UserID": interaction.user.id,
+					"TickedID": TicketID,
+					"TickedChannelID": TicketChannel.id,
+					"Opend on": Timestamp,
+				}
 
 				//send the TicketInfoEmbed Priveate to the User beacause of emphal
 				let ReplyWithTicketInfoEmbed = await interaction.reply({ embeds: [TicketEmbed], ephemeral: true})
