@@ -19,7 +19,6 @@ const client = new Discord.Client({ intents: [32767], });  // Adjust intents as 
 
 client.commands = new Discord.Collection();
 
-    let commands = []
     const commandFiles = fs.readdirSync('./src/Bots/Bot1/cmd').filter(file => file.endsWith('.js'));
 
     for (const file of commandFiles) {
@@ -32,8 +31,10 @@ client.commands = new Discord.Collection();
 
 client.on('ready', () => {
 	console.log('MessageBot ready');
-	TicketInstruction.SendTicketInstructions(client)
-	reloadcommands.ListCommands()
+    TicketInstruction.SendTicketInstructions(client)
+    
+    reloadcommands.ListCommands()
+    
     ReactionLoader.LoadReactions(client);
 
 });

@@ -2,18 +2,15 @@ const Discord = require('discord.js');
 const channels = require('../../../.vscode/Bot1Settings/channels.json')
 const GenerateTicketID = require('../../../functions/Keys').GenerateTicketKey
 
-let TicketChannels = '.vscode/Bot1Settings/Tickets/TicketChannels.json'
-const fs = require('fs');
-
-
-
-const data = fs.readFileSync(TicketChannels, 'utf-8')
-
-const ParsedTicketChannels = JSON.parse(data)
 
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+
+
+
+
 
 
 async function SlashcommandInteraction(interaction) {
@@ -33,29 +30,33 @@ async function SlashcommandInteraction(interaction) {
     }
 }
 
-async function TicketButtonInteraction(interaction) {
+async function ButtonInteraction(interaction) {
 
-	if (interaction instanceof Discord.ButtonInteraction && interaction.channelId == channels.CreateTicketChannel) {
+	if (interaction instanceof Discord.ButtonInteraction) {
 
 		let Timestamp = Math.floor(Date.now() / 1000)
 		let TicketID = GenerateTicketID()
 		
 
 		const Types = {
-			"ticket-report-bug": ReportBug(interaction)
+			"ticket-report-bug": ReportBug
 		}	
 		
 		//Choose the Function to deal with
 
 		// for example if the Coustom id is "ticket-report-bug" it will run the function
 		//ReportBug because its Selecting Dynamicly : Types[ticket-report-bug] = ReportBug(interaction)
-		await Types[interaction.customId]
+		try {
+			await Types[interaction.customId](interaction)
+		} catch (error) {console.error(error)}
+		
 
 
 		//first function
 		async function ReportBug(interaction) {
+
 			if (interaction instanceof Discord.ButtonInteraction) {
-				
+					
 				//create channel
 				let TicketChannel = await interaction.guild.channels.create({
 					name: `ticket_${TicketID}`,
@@ -63,7 +64,8 @@ async function TicketButtonInteraction(interaction) {
 					reason: "Bug",
 					parent: "1287783226558906471" //Parent is the Channle Category for this it is Support
 				})
-				
+
+	
 				//create the TicketInfoEmbed
 				const TicketEmbed = new Discord.EmbedBuilder() 
 					.setTitle(`New Ticket Created`)
@@ -87,34 +89,20 @@ async function TicketButtonInteraction(interaction) {
 						`\n\nTickedID: \`${TicketID}\`` +
 						`\nTickedChannelID: \`${TicketChannel.id}\`` +
 						//get the Timestamp you need to do / 1000 to get the seconds beacause Typpicly you dont want to get the ms
-						`\n\nOpend on <t:${Timestamp}>`
+						`\n\nOpend on <t:${Timestamp}>` +
+						`\n\nOpen Time: <t:${Timestamp}:R>`
+
 					)
 					
 				
-				//write json
-				ParsedTicketChannels[TicketID] = {
-					"User": interaction.user.tag,
-					"GlobalName": interaction.user.globalName,
-					"UserID": interaction.user.id,
-					"TickedID": TicketID,
-					"TickedChannelID": TicketChannel.id,
-					"Opend on": Timestamp,
-				}
+
 
 				//send the TicketInfoEmbed Priveate to the User beacause of emphal
-				let ReplyWithTicketInfoEmbed = await interaction.reply({ embeds: [TicketEmbed], ephemeral: true })
+				await interaction.reply({ embeds: [TicketEmbed], ephemeral: true })
 				
-				//send the Info to the json file with the Ticked id as a selector
-				fs.writeFileSync(TicketChannels, JSON.stringify(ParsedTicketChannels, null, 4), 'utf-8');
 
 				//Send the Info Embed in the TicketChannel
-				SendTicketChannel.send({ embeds: [InfoEmbedInTicketChannle] })
-
-				//wait 100 seconds
-				await sleep(100000)
-
-				//Delete the TicketInfoEmbed
-				ReplyWithTicketInfoEmbed.delete()
+				TicketChannel.send({ embeds: [InfoEmbedInTicketChannle] })
 				
 				
 				
@@ -126,5 +114,5 @@ async function TicketButtonInteraction(interaction) {
 
 module.exports = {
 	SlashcommandInteraction,
-	TicketButtonInteraction
+	ButtonInteraction
 }

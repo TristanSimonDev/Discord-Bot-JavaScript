@@ -1,18 +1,11 @@
 {
-  "ILMC4-L5H38-EYASU-ZP1ZY-DB087": {
-    "User": "sin___y",
-    "GlobalName": "! Tristan",
-    "UserID": "848247310520680489",
-    "TickedID": "ILMC4-L5H38-EYASU-ZP1ZY-DB087",
-    "TickedChannelID": "1289206467609755658",
-    "Opend on": 1727441173
-  },
-  "AP4FL-1PSBL-9LOM4-N8B2V-WNE3G": {
-    "User": "sin___y",
-    "GlobalName": "! Tristan",
-    "UserID": "848247310520680489",
-    "TickedID": "AP4FL-1PSBL-9LOM4-N8B2V-WNE3G",
-    "TickedChannelID": "1289207795672944711",
-    "Opend on": 1727441490
-  }
+    "ILMC4-L5H38-EYASU-ZP1ZY-DB087": {
+        "User": "sin___y",
+        "GlobalName": "! Tristan",
+        "UserID": "848247310520680489",
+        "TickedID": "ILMC4-L5H38-EYASU-ZP1ZY-DB087",
+        "TickedChannelID": "1289206467609755658",
+        "Opend on": 1727441173
+    }
+
 }

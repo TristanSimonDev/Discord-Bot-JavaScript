@@ -1,7 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const fs = require('node:fs');
-const { listenerCount } = require('node:process');
 const dotenv = require('dotenv').config()
 
 function ListCommands() {
