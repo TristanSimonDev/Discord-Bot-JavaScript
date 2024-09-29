@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const Emojis = require('../../../../modules/RequireBot1Settings').Emojis
 
 function InstructionEmbed() {
-    console.log(Emojis.Flag, Emojis.Ticket);
     const InstructionEmbed = new Discord.EmbedBuilder() 
         .setTitle(`Support/Help/Bugs/Reports ${Emojis.Ticket}`)
         .setDescription(
@@ -15,7 +14,7 @@ function InstructionEmbed() {
         })
     
     const BugReportButton = new Discord.ButtonBuilder()
-        .setCustomId('ticket-report-bug')
+        .setCustomId('ticket_report-bug')
         .setLabel('Report Bug 📩')
         .setStyle(Discord.ButtonStyle.Secondary)
         

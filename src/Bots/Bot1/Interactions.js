@@ -1,17 +1,5 @@
 const Discord = require('discord.js');
-const channels = require('../../../.vscode/Bot1Settings/channels.json')
 const GenerateTicketID = require('../../../functions/Keys').GenerateTicketKey
-
-
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-
-
-
-
-
 
 async function SlashcommandInteraction(interaction) {
     if (interaction instanceof Discord.ChatInputCommandInteraction) {
@@ -31,11 +19,21 @@ async function SlashcommandInteraction(interaction) {
 }
 
 async function ButtonInteraction(interaction) {
-
+	console.log(interaction)
 	if (interaction instanceof Discord.ButtonInteraction) {
 
 		let Timestamp = Math.floor(Date.now() / 1000)
 		let TicketID = GenerateTicketID()
+
+		console.log(interaction.customId)
+
+		const ButtonCommad = require(`./Buttons/${interaction.customId}`)
+
+		if ("execute" in ButtonCommad) {
+			try {
+				 ButtonCommad.execute(interaction)
+			} catch (err) {console.err(err)}
+		}
 		
 
 		const Types = {
@@ -94,18 +92,13 @@ async function ButtonInteraction(interaction) {
 
 					)
 					
-				
-
-
 				//send the TicketInfoEmbed Priveate to the User beacause of emphal
 				await interaction.reply({ embeds: [TicketEmbed], ephemeral: true })
 				
 
 				//Send the Info Embed in the TicketChannel
 				TicketChannel.send({ embeds: [InfoEmbedInTicketChannle] })
-				
-				
-				
+					
 			}
  		}
 

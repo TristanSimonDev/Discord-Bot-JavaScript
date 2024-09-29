@@ -17,16 +17,20 @@ const fs = require('fs')
 
 const client = new Discord.Client({ intents: [32767], });  // Adjust intents as needed for your bot's functionality
 
+
+// Slash
 client.commands = new Discord.Collection();
 
-    const commandFiles = fs.readdirSync('./src/Bots/Bot1/cmd').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./src/Bots/Bot1/cmd').filter(file => file.endsWith('.js'));
 
-    for (const file of commandFiles) {
+for (const file of commandFiles) {
 	const command = require(`./cmd/${file}`);
 	if ('data' in command && 'execute' in command) {
 		client.commands.set(command.data.name, command)
 	}
 }
+
+//Buttons
 
 
 client.on('ready', () => {
@@ -44,8 +48,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
 });
 
 client.on('interactionCreate', async interaction => {
-
-    console.log(interaction)
     
     let InteractionTypes = {
         "ButtonInteraction": interactions.ButtonInteraction(interaction),
@@ -53,7 +55,7 @@ client.on('interactionCreate', async interaction => {
     }
     
     //Select Interaction Dynamicly
-    InteractionTypes[interaction]
+    await InteractionTypes[interaction]
     
 
 	
