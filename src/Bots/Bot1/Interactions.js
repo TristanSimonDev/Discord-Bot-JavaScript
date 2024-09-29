@@ -19,12 +19,8 @@ async function SlashcommandInteraction(interaction) {
 }
 
 async function ButtonInteraction(interaction) {
-	console.log(interaction)
+
 	if (interaction instanceof Discord.ButtonInteraction) {
-
-		
-
-		console.log(interaction.customId)
 
 		const ButtonCommad = await require(`./Buttons/${interaction.customId}`)
 
