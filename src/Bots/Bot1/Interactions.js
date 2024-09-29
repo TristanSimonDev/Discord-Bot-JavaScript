@@ -22,6 +22,8 @@ async function ButtonInteraction(interaction) {
 
 	if (interaction instanceof Discord.ButtonInteraction) {
 
+		console.log(interaction.customId)
+
 		const ButtonCommad = await require(`./Buttons/${interaction.customId}`)
 
 		if ("execute" in ButtonCommad) {
@@ -29,7 +31,6 @@ async function ButtonInteraction(interaction) {
 				await ButtonCommad.execute(interaction)
 			} catch (err) {console.error(err)}
 		}
-		
 
 	}
 }
