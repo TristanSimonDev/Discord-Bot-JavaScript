@@ -25,7 +25,6 @@ function InstructionEmbed() {
             //add all Buttons in the ButtonArray
         .addComponents(...Buttons);
 
-    
         
     
     return {
