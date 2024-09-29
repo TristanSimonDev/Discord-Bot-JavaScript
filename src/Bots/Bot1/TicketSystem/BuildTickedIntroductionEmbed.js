@@ -14,7 +14,7 @@ function InstructionEmbed() {
         })
     
     const BugReportButton = new Discord.ButtonBuilder()
-        .setCustomId('ticket_report-bug')
+        .setCustomId('TicketButton_report-bug')
         .setLabel('Report Bug 📩')
         .setStyle(Discord.ButtonStyle.Secondary)
         
