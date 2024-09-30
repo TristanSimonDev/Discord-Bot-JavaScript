@@ -4,13 +4,12 @@ const ReactionLoader = require('./Load/load');
 const Reactions = require('./Reaction');
 const dotenv = require('dotenv').config()
 
-const TicketInstruction = require('./TicketSystem/SendTicketIndroduction')
+const TicketInstruction = require('./TicketSystem/TicketInstructions')
 
 const reloadcommands = require('./Commands')
 const interactions = require('./Interactions')
 
 const fs = require('fs')
-
 
 
 
@@ -35,11 +34,13 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
 	console.log('MessageBot ready');
-    TicketInstruction.SendTicketInstructions(client)
+    TicketInstruction.InstructionEmbed(client)
     
     reloadcommands.ListCommands()
     
     ReactionLoader.LoadReactions(client);
+
+    signal = true
 
 });
 
@@ -80,3 +81,20 @@ process.on('SIGINT', () => {
 client.login(process.env.TokenForChatBot);
 
 
+/*
+
+async function waitForSignal() {
+    return new Promise((resolve) => {
+        const interval = setInterval(() => {
+            if (signal) {
+                clearInterval(interval); // Clear the interval when signal is true
+                resolve(); // Resolve the promise
+                console.log(client.user)
+            }
+        }, 100); // Check every 100 milliseconds
+    });
+}
+
+waitForSignal()
+
+*/
