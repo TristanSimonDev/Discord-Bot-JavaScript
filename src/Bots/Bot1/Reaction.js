@@ -9,7 +9,6 @@ const RulesEmoji = Object.values(SettingsJSON.Reactions.RulesReaction)
 const ReactionEvent = async (reaction, user) => {
     if (reaction instanceof Discord.MessageReaction && user instanceof Discord.User) {
 
-        console.log(reaction)
         
         const Channels = {
             ReactionRoleLogChannel: reaction.message.guild?.channels.cache.get(SettingsJSON.Channels['ReactionRoleLog-Channel']),
@@ -30,11 +29,6 @@ const ReactionEvent = async (reaction, user) => {
         //run the reactionEvent dynamicly with the help of the ReactionEvents
         Events[reaction.emoji.name]
         
-        
-    
-      
-        
-   
     }      
 }
 
