@@ -26,6 +26,7 @@
     "scripts": {
         "Bot1": "node src/Bots/Bot1/index.js",
         "Bot2": "node src/Bots/Bot2/index.js",
+        "testbot": "node src/Bots/testbot/index.js",
         "all": "node src/Bots/Bot2/index.js & node src/Bots/Bot1/index.js"
     },
     "author": "",
