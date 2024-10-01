@@ -1,20 +1,22 @@
 const Discord = require('discord.js');
 
-const ReactionLoader = require('./Load/load');
 const Reactions = require('./Reaction');
 const dotenv = require('dotenv').config()
-
-
-
 
 const interactions = require('./Interactions')
 
 const fs = require('fs')
 
+const TicketInstruction = require('./Ticket-Instructions')
 
+const reloadcommands = require('./Commands')
+const ReactionLoader = require('./Load/load')
 
 
 const client = new Discord.Client({ intents: [32767], });  // Adjust intents as needed for your bot's functionality
+
+
+
 
 
 // Slash
@@ -29,21 +31,8 @@ for (const file of commandFiles) {
 	}
 }
 
-/*
-const EventFiles = fs.readdirSync('src/Bots/Bot1/Events/').filter(file => file.endsWith('.js'))
-
-for (const file of EventFiles) {
-    const Event = require('./Events/' + file)
-
-    console.log(`Event ${Event} loaded successfully`)
-}
-    */
 
 
-client.on('ready', () => {
-	console.log('MessageBot ready');
-
-});
 
 client.on('messageReactionAdd', async (reaction, user) => {
     Reactions.ReactionEvent(reaction, user);
@@ -82,22 +71,16 @@ process.on('SIGINT', () => {
 client.login(process.env.TokenForChatBot);
 
 
-/*
+const EventFiles = fs.readdirSync('src/Bots/Bot1/Events/').filter(file => file.endsWith('.js'))
 
-async function waitForSignal() {
-    return new Promise((resolve) => {
-        const interval = setInterval(() => {
-            if (signal) {
-                clearInterval(interval); // Clear the interval when signal is true
-                resolve(); // Resolve the promise
-                console.log(client.user)
-            }
-        }, 100); // Check every 100 milliseconds
-    });
+for (const file of EventFiles) {
+    const Event = require('./Events/' + file)
+
+    console.log(`Event [${Event.Name}] loaded successfully`)
+
+    try {
+        
+        client[Event.Type](Event.Name, (...args) => Event.execute(...args))
+        
+    } catch (err) {console.error(`Error: ${err}`)}
 }
-
-waitForSignal()
-
-*/
-
-module.exports
