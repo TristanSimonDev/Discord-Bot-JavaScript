@@ -18,11 +18,8 @@ for (const file of EventFiles) {
 
     
     try {
-
-        Event.Type == 'once' ?
-            client.once(Event.name, (...args) => Event.execute(...args))
-            :
-            client.on(Event.name, (...args) => Event.execute(...args))
+        
+        client[Event.Type](Event.name, (...args) => Event.execute(...args))
         
     } catch (err) {console.error(`Error: ${err}`)}
     
