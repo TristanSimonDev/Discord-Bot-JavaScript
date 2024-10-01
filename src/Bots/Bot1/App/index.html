@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+          function connectWebSocket() {
+            const socket = new WebSocket('ws://localhost:8080'); // Connect to WebSocket server
+
+            // When a message is received from the WebSocket server
+            socket.onmessage = function(event) {
+                const data = JSON.parse(event.data); // Parse the JSON data
+                console.log(data.Client)
+                document.getElementById('test').innerText = data.Client; // Set button text to client ID
+                
+            };
+
+            // Optional: handle errors
+            socket.onerror = function(error) {
+                console.error('WebSocket error:', error);
+                document.getElementById('test').innerText = 'WebSocket Error';
+            };
+
+            // Optional: handle socket closure
+            socket.onclose = function() {
+                console.log('WebSocket connection closed');
+            };
+        }
+
+        // Wait for the page to fully load before connecting
+        window.onload = connectWebSocket;
+    </script>
+</head>
+<body>
+    <button id="test">HI</button>
+</body>
+</html>
