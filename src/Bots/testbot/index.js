@@ -6,15 +6,14 @@ const fs = require('fs')
 
 const client = new Discord.Client({ intents: [32767] });
 
-const EventFolder = "./Events/"
 
 const EventFiles = fs.readdirSync("src/Bots/testbot/Events").filter(file => file.endsWith('.js'))
 
 for (const file of EventFiles) {
 
-    console.log(path.join(EventFolder, file))
+    console.log('./Events/' + file)
 
-    let Event = require(EventFolder + file)
+    let Event = require('./Events/' + file)
 
     
     try {
