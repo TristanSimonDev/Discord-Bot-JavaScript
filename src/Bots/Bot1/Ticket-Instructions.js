@@ -6,7 +6,7 @@ const Settings =  require('./modules/requireSettings')
 
 async function InstructionEmbed(Client) {
     const InstructionEmbed = new Discord.EmbedBuilder() 
-        .setTitle(`Support/Help/Bugs/Reports ${Emojis.Flag}`)
+        .setTitle(`Support/Help/Bugs/Reports ${Emojis.Ticket}`)
         .setDescription(
             `\n\nIf you need an Help Please Press the Button beloe, that Describes your Problem the best.` +
 
