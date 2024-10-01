@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 
-const Reactions = require('./Reaction');
 const dotenv = require('dotenv').config()
 
 const interactions = require('./Interactions')
