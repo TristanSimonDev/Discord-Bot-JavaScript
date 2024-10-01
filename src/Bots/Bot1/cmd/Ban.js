@@ -1,5 +1,5 @@
-const Discord = require('../../../../modules/require').Discord
-const Emojis = require('../../../../modules/RequireBot1Settings').Emojis
+const Discord = require('discord.js')
+const Emojis = require('../modules/requireSettings').Emojis
 
 const BanTimes = {
     "1": 60,                //1min

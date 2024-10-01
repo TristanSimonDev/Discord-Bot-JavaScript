@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js");
-const Bot1Settings = require('../../../../modules/RequireBot1Settings')
+const Emojis = require('../modules/requireSettings').Emojis
 
 module.exports = {
     data: new Discord.SlashCommandBuilder()
@@ -52,7 +52,7 @@ module.exports = {
             let role = await interaction.guild.roles.create({ name: RoleName, color: RoleColor, reason: Reason, permissions: Permissions })
 
             const RoleCreationEmbed = new Discord.EmbedBuilder()
-                .setTitle(`Role Created ${Bot1Settings.Emojis.Scroll}`)
+                .setTitle(`Role Created ${Emojis.Scroll}`)
                 .setDescription(
                     `Name: ${role.name}` +
                     `\nID: ${role.id}` +
