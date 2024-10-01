@@ -4,9 +4,9 @@ const ReactionLoader = require('./Load/load');
 const Reactions = require('./Reaction');
 const dotenv = require('dotenv').config()
 
-const TicketInstruction = require('./TicketSystem/TicketInstructions')
 
-const reloadcommands = require('./Commands')
+
+
 const interactions = require('./Interactions')
 
 const fs = require('fs')
@@ -29,18 +29,19 @@ for (const file of commandFiles) {
 	}
 }
 
-//Buttons
+/*
+const EventFiles = fs.readdirSync('src/Bots/Bot1/Events/').filter(file => file.endsWith('.js'))
+
+for (const file of EventFiles) {
+    const Event = require('./Events/' + file)
+
+    console.log(`Event ${Event} loaded successfully`)
+}
+    */
 
 
 client.on('ready', () => {
 	console.log('MessageBot ready');
-    TicketInstruction.InstructionEmbed(client)
-    
-    reloadcommands.ListCommands()
-    
-    ReactionLoader.LoadReactions(client);
-
-    signal = true
 
 });
 
@@ -98,3 +99,5 @@ async function waitForSignal() {
 waitForSignal()
 
 */
+
+module.exports
