@@ -14,7 +14,8 @@ const client = new Discord.Client({ intents: [32767], });  // Adjust intents as 
 
 
 
-// Slash
+// -----------------------Set SlashCommands---------------------------
+
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./src/Bots/Bot1/cmd').filter(file => file.endsWith('.js'));
@@ -25,6 +26,26 @@ for (const file of commandFiles) {
 		client.commands.set(command.data.name, command)
 	}
 }
+
+//--------------------------------------------------------------------
+
+//------------------------Client Events-------------------------------
+
+const EventFiles = fs.readdirSync('src/Bots/Bot1/Events/').filter(file => file.endsWith('.js'))
+
+for (const file of EventFiles) {
+    const Event = require('./Events/' + file)
+
+    console.log(`Event [${Event.Name}] loaded successfully`)
+
+    try {
+        
+        client[Event.Type](Event.Name, (...args) => Event.execute(...args))
+        
+    } catch (err) {console.error(`Error: ${err}`)}
+}
+
+//---------------------------------------------------------------------
 
 
 
@@ -66,16 +87,3 @@ process.on('SIGINT', () => {
 client.login(process.env.TokenForChatBot);
 
 
-const EventFiles = fs.readdirSync('src/Bots/Bot1/Events/').filter(file => file.endsWith('.js'))
-
-for (const file of EventFiles) {
-    const Event = require('./Events/' + file)
-
-    console.log(`Event [${Event.Name}] loaded successfully`)
-
-    try {
-        
-        client[Event.Type](Event.Name, (...args) => Event.execute(...args))
-        
-    } catch (err) {console.error(`Error: ${err}`)}
-}
