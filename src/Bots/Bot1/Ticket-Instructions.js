@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const Emojis = require('./modules/requireSettings').Emojis
 
+const Settings =  require('./modules/requireSettings')
+
 
 async function InstructionEmbed(Client) {
     const InstructionEmbed = new Discord.EmbedBuilder() 
@@ -37,8 +39,8 @@ async function InstructionEmbed(Client) {
             //add all Buttons in the ButtonArray
         .addComponents(...Buttons);
 
-        const Settings =  require('./modules/requireSettings')
-        const TicketChannelID = Settings.Channels.CreateTicketChannel
+        
+    const TicketChannelID = Settings.Channels.CreateTicketChannel
         
         
 
