@@ -7,11 +7,6 @@ const interactions = require('./Interactions')
 
 const fs = require('fs')
 
-const TicketInstruction = require('./Ticket-Instructions')
-
-const reloadcommands = require('./Commands')
-const ReactionLoader = require('./Load/load')
-
 
 const client = new Discord.Client({ intents: [32767], });  // Adjust intents as needed for your bot's functionality
 
