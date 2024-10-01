@@ -1,0 +1,4 @@
+20.6 //lts version of node
+//Install lts (long therm support first)
+//install with nvm i [version?]
+//switch with nvm use [version?]
