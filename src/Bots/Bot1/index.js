@@ -47,13 +47,6 @@ for (const file of EventFiles) {
 
 //---------------------------------------------------------------------
 
-
-
-
-client.on('messageReactionAdd', async (reaction, user) => {
-    Reactions.ReactionEvent(reaction, user);
-});
-
 client.on('interactionCreate', async interaction => {
     
     let InteractionTypes = {
