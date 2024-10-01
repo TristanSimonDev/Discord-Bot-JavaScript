@@ -52,7 +52,7 @@ async function InstructionEmbed(Client) {
         components: [row],
     })
 
-    console.log(SendedInstructions)
+    //console.log(SendedInstructions)
 }
  
 module.exports = {InstructionEmbed}
