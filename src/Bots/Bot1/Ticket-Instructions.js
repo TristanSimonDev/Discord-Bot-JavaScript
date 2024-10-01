@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
-const Emojis = require('../../../../modules/RequireBot1Settings').Emojis
+const Emojis = require('./modules/requireSettings').Emojis
 
 
 async function InstructionEmbed(Client) {
     const InstructionEmbed = new Discord.EmbedBuilder() 
-        .setTitle(`Support/Help/Bugs/Reports ${Emojis.Ticket}`)
+        .setTitle(`Support/Help/Bugs/Reports ${Emojis.Flag}`)
         .setDescription(
             `\n\nIf you need an Help Please Press the Button beloe, that Describes your Problem the best.` +
 
@@ -37,7 +37,7 @@ async function InstructionEmbed(Client) {
             //add all Buttons in the ButtonArray
         .addComponents(...Buttons);
 
-        const Settings =  require('../../../../modules/RequireBot1Settings')
+        const Settings =  require('./modules/requireSettings')
         const TicketChannelID = Settings.Channels.CreateTicketChannel
         
         
