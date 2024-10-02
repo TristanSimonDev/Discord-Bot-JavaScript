@@ -9,6 +9,7 @@ const ReactionLoader = require('../Load/load')
 module.exports = {
     Name: Discord.Events.ClientReady,
     Type: 'on',
+    EventID: 1,
     async execute(client) {
         
         if (!(client instanceof Discord.Client)) return;
