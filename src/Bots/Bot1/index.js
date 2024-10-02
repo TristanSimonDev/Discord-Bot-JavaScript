@@ -35,38 +35,20 @@ const EventFiles = fs.readdirSync('src/Bots/Bot1/Events/').filter(file => file.e
 for (const file of EventFiles) {
     const Event = require('./Events/' + file)
 
-    console.log(`Event [${Event.Name}] loaded successfully`)
+    console.log(`Event [${Event.Name}]-[ID: ${Event.EventID}] successfully loaded Dynamically`)
 
     try {
         
-        client[Event.Type](Event.Name, (...args) => Event.execute(...args))
+         client[Event.Type](Event.Name, async (...args) => Event.execute(...args))
         
     } catch (err) {console.error(`Error: ${err}`)}
 }
 
 //---------------------------------------------------------------------
 
-client.on('interactionCreate', async interaction => {
-    
-    let InteractionTypes = {
-        "ButtonInteraction": interactions.ButtonInteraction(interaction),
-        "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction) //Slashcommand
-    }
-    
-    //Select Interaction Dynamicly
-    await InteractionTypes[interaction]
-    
-
-	
-	
-	
-});
-
-
 
 client.on('disconnect', (event) => {
     console.log(`The client has disconnected with reason: ${event.reason} (Code: ${event.code})`);
-
 });
 
 process.on('SIGINT', () => {
