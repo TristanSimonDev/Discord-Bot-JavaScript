@@ -9,13 +9,26 @@ function ColorOutput(input) {
         white: 37
     };
 
-    const output = {};
-
-    for (const [color, code] of Object.entries(colors)) {
-        output[color] = `\x1b[${code}m${input}\x1b[39m`; // Create properties dynamically
+    return {
+        get red() {
+            return `\x1b[${colors.red}m${input}\x1b[39m`;
+        },
+        get green() {
+            return `\x1b[${colors.green}m${input}\x1b[39m`;
+        },
+        get yellow() {
+            return `\x1b[${colors.cyan}m${input}\x1b[39m`;
+        },
+        get blue() {
+            return `\x1b[${colors.blue}m${input}\x1b[39m`;
+        },
+        get magenta() {
+            return `\x1b[${colors.magenta}m${input}\x1b[39m`;
+        },
+        get cyan() {
+            return `\x1b[${colors.cyan}m${input}\x1b[39m`;
+        }
     }
-
-    return output;
 }
 
 
