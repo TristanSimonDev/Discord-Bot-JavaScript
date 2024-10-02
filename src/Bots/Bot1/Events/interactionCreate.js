@@ -1,14 +1,26 @@
 const Discord = require('discord.js')
 
-const ReactionEvent = require('../Reaction')
+const interactions = require('../Interactions')
 
 module.exports = {
-    Name: Discord.Events.MessageReactionAdd,
+    Name: Discord.Events.InteractionCreate,
     Type: 'on',
+    EventID: 2,
+    
+    async execute(interaction) {
 
-    async execute(reaction, user) {
-        
-        ReactionEvent.ReactionEvent(reaction, user)
+        let InteractionTypes = {
+            "ButtonInteraction": interactions.ButtonInteraction(interaction),
+            "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction) //Slashcommand
+        }
+
+
+        try {
+
+            await InteractionTypes[interaction]
+
+        } catch (err) {console.error(`Error: ${err}`)}
 
     }
 }
+    
