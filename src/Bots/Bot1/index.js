@@ -46,11 +46,6 @@ for (const file of EventFiles) {
 
 //---------------------------------------------------------------------
 
-
-client.on('disconnect', (event) => {
-    console.log(`The client has disconnected with reason: ${event.reason} (Code: ${event.code})`);
-});
-
 process.on('SIGINT', () => {
     console.log('Received SIGINT. Gracefully shutting down...');
     client.destroy();  // Clean up resources and logout
