@@ -22,7 +22,7 @@ jobs:
         node-version: '20'  # Specify Node.js version
 
     - name: Install dependencies
-      run: npm install #install dp
+      run: npm install 
 
     - name: Start Bot1 
        env: 
