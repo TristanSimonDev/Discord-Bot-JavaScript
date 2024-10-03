@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js Discord Bot
 
 on:
   push:
@@ -22,9 +22,9 @@ jobs:
         node-version: '20'  # Specify Node.js version
 
     - name: Install dependencies
-      run: npm install
+      run: npm install #install dp
 
-    - name: Start Bot1
-       env:
-        DISCORD_TOKEN: ${{ secrets.TokenForChatBot }}  # Access the secret
+    - name: Start Bot1 
+       env: #get the env
+        DISCORD_TOKEN: ${{ secrets.TokenForChatBot }}  # Access the token
       run: npm run Bot1
