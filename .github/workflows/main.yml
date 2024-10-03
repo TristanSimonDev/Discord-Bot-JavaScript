@@ -26,5 +26,5 @@ jobs:
 
     - name: Start Bot1 
       env: 
-        TokenForChatBot: ${{ secrets.TokenForChatBot }}  # Access the token
+        TokenForChatBot: ${{ secrets.TOKEN }}  # Access the token
       run: npm run Bot1
