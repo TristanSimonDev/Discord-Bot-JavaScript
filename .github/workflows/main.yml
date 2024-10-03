@@ -3,26 +3,29 @@ name: Node.js CI
 on:
   push:
     branches: 
-      - main  # Trigger the workflow on push to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Trigger the workflow on pull requests to the main branch
+      - main
 
 jobs:
   build:
-    runs-on: windows-latest  # Specify Windows as the environment
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2  # Checkout the repository code
+      uses: actions/checkout@v3  # Updated to v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # Updated to v3
       with:
-        node-version: '22.6'  # Specify the version of Node.js you want to use
+        node-version: '20'  # Specify Node.js version
 
     - name: Install dependencies
-      run: npm install  # Install your project dependencies
+      run: npm install
 
-    - name: Start Bot
-      run: npm run Bot1  # Optionally start your bot (not usually done in CI/CD)
+    - name: Run tests
+      run: npm test
+
+    - name: Start Bot1
+      run: npm run Bot1
