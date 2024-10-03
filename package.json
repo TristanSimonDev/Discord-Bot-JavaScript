@@ -9,6 +9,7 @@
         "har-validator": "^5.1.5",
         "lint": "^0.8.19",
         "loadash": "^1.0.0",
+        "module-alias": "^2.2.3",
         "mysql": "^2.18.1",
         "punycode": "^2.3.1",
         "request": "^2.88.2",
