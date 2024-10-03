@@ -25,6 +25,6 @@ jobs:
       run: npm install #install dp
 
     - name: Start Bot1 
-       env: #get the env
+       env: 
         DISCORD_TOKEN: ${{ secrets.TokenForChatBot }}  # Access the token
       run: npm run Bot1
