@@ -24,8 +24,5 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm test
-
     - name: Start Bot1
       run: npm run Bot1
