@@ -54,6 +54,6 @@ process.on('SIGINT', () => {
 });
 
 // Login to Discord
-client.login(process.env.TokenForChatBot);
+client.login(process.env.TokenForChatBot).then(console.log("Token is working")) || console.log("Error on Token");
 
 
