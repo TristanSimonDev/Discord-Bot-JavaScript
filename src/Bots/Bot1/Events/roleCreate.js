@@ -1,5 +1,4 @@
 const Discord = require('discord.js')
-const { execute } = require('./ReactionAdd')
 
 module.exports = {
     Name: Discord.Events.GuildRoleCreate,
@@ -8,6 +7,6 @@ module.exports = {
 
     async execute(CreatedRole) {
         if (!(CreatedRole instanceof Discord.Role)) return;
-        console.log(CreatedRole.id)
+        console.log()
     }
 }

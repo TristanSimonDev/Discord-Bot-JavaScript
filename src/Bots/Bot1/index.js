@@ -3,10 +3,9 @@ const Discord = require('discord.js');
 const dotenv = require('dotenv').config()
 
 const interactions = require('./Interactions')
-
 const fs = require('fs')
 
-const ColorOutput = require('../../../functions/ColorOutput').ColorOutput
+const ColorOutput = require('./functions/ColorOutput').ColorOutput
 
 
 const client = new Discord.Client({ intents: [32767], });  // Adjust intents as needed for your bot's functionality

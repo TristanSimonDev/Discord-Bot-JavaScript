@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const GenerateTicketID = require('../../../../functions/Keys').GenerateTicketKey
+const GenerateTicketID = require('../functions/Keys').GenerateTicketKey
 
 module.exports = {
     async execute(interaction) {
