@@ -7,17 +7,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'  # Specify the Node.js version
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Specify the Node.js version
 
-    - name: Install dependencies
-      run: npm install  # Installs all dependencies listed in package.json
+      - name: Install dependencies
+        run: npm install  # Installs all dependencies listed in package.json
 
-    - name: Test
-      run: node Hooks/GitHub.js
+      - name: Test
+        run: node Hooks/GitHub.js  # Run your script
