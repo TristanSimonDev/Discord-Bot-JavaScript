@@ -1,4 +1,4 @@
-name: Commit
+name: Commit-Test[1]
 
 on:
   schedule:
