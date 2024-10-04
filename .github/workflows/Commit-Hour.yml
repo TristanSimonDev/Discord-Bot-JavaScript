@@ -1,4 +1,4 @@
-name: Commit-Hour
+name: Commit
 
 on:
    schedule:
