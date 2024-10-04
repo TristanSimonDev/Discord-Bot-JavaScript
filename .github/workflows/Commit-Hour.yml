@@ -1,0 +1,14 @@
+name: Node.js Discord Bot
+
+on:
+   schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Start Bot1 
+      run: node Hooks\GitHub.js
