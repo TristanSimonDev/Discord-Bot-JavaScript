@@ -7,9 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
+  steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install  # Installs all dependencies listed in package.json
 
     - name: Test
       run: node Hooks/GitHub.js
