@@ -1,8 +1,7 @@
 name: Commit-Test[1]
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"  # Runs every 5 minutes
+  push:
 
 jobs:
   build:
@@ -11,9 +10,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-
-    - name: List files (for debugging)
-      run: ls -R
 
     - name: Test
       run: node Hooks/GitHub.js
