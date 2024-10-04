@@ -20,4 +20,6 @@ jobs:
         run: npm install  # Installs all dependencies listed in package.json
 
       - name: Test
+        env:
+          WebHookToken: ${{ secrets.WEBHOOKTOKEN }}
         run: node Hooks/GitHub.js  # Run your script

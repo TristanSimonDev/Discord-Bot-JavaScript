@@ -2,6 +2,6 @@ const Discord = require('discord.js')
 
 const env = require('dotenv').config
 
-const webhookClient = new Discord.WebhookClient({ id: process.env.WebHookID, token: process.env.WebHookToken });
+const webhookClient = new Discord.WebhookClient({ id: "1291837786617544836", token: process.env.WebHookToken });
 
 webhookClient.send("test")
