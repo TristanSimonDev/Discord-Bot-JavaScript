@@ -11,4 +11,4 @@ jobs:
     steps:
 
     - name: test
-      run: node Hooks\GitHub.js
+      run: node Hooks/GitHub.js
