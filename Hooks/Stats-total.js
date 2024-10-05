@@ -8,7 +8,7 @@ const PayloadPath = "Hooks/Data/payload.json"
 const data = fs.readFileSync(PayloadPath, 'utf-8')
 const parsedPayload = JSON.parse(data)
 
-const WebhookClient = new Discord.WebhookClient({ id: "", token: "" })
+const WebhookClient = new Discord.WebhookClient({ id: "1292233165062275092", token: process.env.StatsWebhookToken })
 
 
 const statsEmbed = new Discord.EmbedBuilder()
