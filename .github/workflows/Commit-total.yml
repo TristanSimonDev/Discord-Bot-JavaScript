@@ -1,0 +1,25 @@
+name: Total-Commits
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Specify the Node.js version
+
+      - name: Install dependencies
+        run: npm install  # Installs all dependencies listed in package.json
+
+      - name: Test
+        env:
+          WebHookToken: ${{ secrets.WEBHOOKTOKEN }}
+        run: node Hooks/GitHub-total.js  # Run your script
