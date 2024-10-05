@@ -1,0 +1,28 @@
+name: Node.js Discord Bot
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Updated to v3
+
+    - name: Commit Payload 
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com" 
+        git config --global user.name "GitHub Actions Bot" 
+        git add Hooks/payload.json
+        git commit -m "Update" || echo "nothing to commit"
+        git push --force origin main
+
+    - name: Push Changes
+      env: 
+        GitHub-TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      run: |
+        git push origin main || echo "nothing to push"
+
