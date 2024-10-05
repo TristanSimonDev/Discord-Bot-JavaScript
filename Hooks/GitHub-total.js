@@ -15,7 +15,7 @@ const payload = JSON.parse(data);
 const HourlyEmbed = new Discord.EmbedBuilder()
     .setTitle("Commits \`All Time\`")
     .setDescription(
-        `\nCurrent GitHub commits on my repo. This will automatically update every hour.` +
+        `\nCurrent GitHub commits on my repo. This will automatically update every 30min.` +
         `\nCommits: \`${payload.Commits.toString()}\`` +
         `\nPushes: \`${payload.Pushes.toString()}\`` +
         `\nLast Refreshed: <t:${Timestamp}:R>`)
