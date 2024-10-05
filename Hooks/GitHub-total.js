@@ -17,6 +17,7 @@ const HourlyEmbed = new Discord.EmbedBuilder()
     .setDescription(
         `\nCurrent GitHub commits on my repo. This will automatically update every hour.` +
         `\nCommits: \`${payload.Commits.toString()}\`` +
+        `\nPushes: \`${payload.Pushes.toString()}\`` +
         `\nLast Refreshed: <t:${Timestamp}:R>`)
     
 
