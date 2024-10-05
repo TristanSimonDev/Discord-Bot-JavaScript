@@ -15,9 +15,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'  # Specify the Node.js version
+
+    - name: Install dependencies
+      run: npm install  # Installs all dependencies listed in package.json
       
     - name: Increase PushCounter
-      run: node Hooks/Funtions/Increase-push.js
+      run: node Hooks/Functions/Increase-push.js
+
 
     - name: Status
       run: git status
