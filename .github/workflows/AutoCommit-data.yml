@@ -1,4 +1,4 @@
-name: Node.js Discord Bot
+name: AutoCommit Data
 
 on:
   push:
