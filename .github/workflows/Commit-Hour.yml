@@ -22,4 +22,4 @@ jobs:
       - name: Test
         env:
           WebHookToken: ${{ secrets.WEBHOOKTOKEN }}
-        run: node Hooks/GitHub.js  # Run your script
+        run: node Hooks/GitHub-hourly.js  # Run your script
