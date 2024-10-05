@@ -30,7 +30,7 @@ jobs:
       run: |
         git config --global user.email "SimonTristanDev@gmail.com" 
         git config --global user.name "GitHub Actions Bot" 
-        git add Hooks/payload.json
+        git add Hooks/Data/payload.json
         git commit -m "Update" || echo "nothing to commit"
         git push origin main
 
