@@ -11,6 +11,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3 
 
+    - name: Status
+      rum: git status
+
     - name: Commit Payload 
       run: |
         git config --global user.email "SimonTristanDev@gmail.com" 
