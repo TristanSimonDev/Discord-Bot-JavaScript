@@ -13,7 +13,7 @@ jobs:
 
     - name: Commit Payload 
       run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com" 
+        git config --global user.email "SimonTristanDev@gmail.com" 
         git config --global user.name "GitHub Actions Bot" 
         git add Hooks/payload.json
         git commit -m "Update" || echo "nothing to commit"
