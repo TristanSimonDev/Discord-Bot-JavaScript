@@ -20,7 +20,7 @@ jobs:
         git config --global user.name "GitHub Actions Bot" 
         git add Hooks/payload.json
         git commit -m "Update" || echo "nothing to commit"
-        git push --force origin main
+        git push origin main
 
     - name: Push Changes
       env: 
