@@ -14,9 +14,9 @@ const WebhookClient = new Discord.WebhookClient({ id: "1292233165062275092", tok
 const statsEmbed = new Discord.EmbedBuilder()
     .setTitle(`Server Stats`)
     .setDescription(
-        `Total Messages: \`Num\`\n` +
-        `Total Slashcommands: \`Num\`\n` +
-        `Total GuildMembers: \`Num\``
+        `Total Messages: \`${parsedPayload["TotalMessages"]}\`\n` +
+        `Total Slashcommands: \`${parsedPayload["TotalSlashCommands"]}\`\n` +
+        `Total GuildMembers: \`${parsedPayload["GuildMembers"]}\``
     )
 
 if (parsedPayload["StatsMessageID"]) {
