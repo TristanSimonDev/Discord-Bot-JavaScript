@@ -1,7 +1,7 @@
 const fs = require('fs')
 const { stringify } = require('querystring')
 
-const PayloadPath = "Hooks/Data/payload.json"
+const PayloadPath = "Hooks/Data/payload-github.json"
 
 const data = fs.readFileSync(PayloadPath, 'utf-8')
 
