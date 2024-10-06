@@ -7,7 +7,7 @@ const Timestamp = Math.floor(Date.now() / 1000)
 
 const fs = require('fs');
 
-const data = fs.readFileSync('Hooks/Data/payload.json', 'utf-8');
+const data = fs.readFileSync('Hooks/Data/payload-github.json', 'utf-8');
 
 const payload = JSON.parse(data);
 

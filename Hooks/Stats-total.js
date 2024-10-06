@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const Discord = require('discord.js')
 
-const PayloadPath = "Hooks/Data/payload.json"
+const PayloadPath = "Hooks/Data/payload-stats.json"
 
 const data = fs.readFileSync(PayloadPath, 'utf-8')
 const parsedPayload = JSON.parse(data)
