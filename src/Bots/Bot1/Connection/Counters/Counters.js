@@ -20,5 +20,24 @@ function increaseTotalMessageCounter() {
     fs.writeFileSync(PayloadPath, JSON.stringify(ParsedPayload, null, 4), 'utf-8')
 }
 
+function increaseTotalMessageCounter() {
+    console.log(ParsedPayload)
 
-increaseSlashcommandCounter()
+    ParsedPayload["TotalMessages"] += 1
+
+    fs.writeFileSync(PayloadPath, JSON.stringify(ParsedPayload, null, 4), 'utf-8')
+}
+
+function increaseTotalButtonInteractionsCounter() {
+    console.log(ParsedPayload)
+
+    ParsedPayload["TotalButtonInteractions"] += 1
+
+    fs.writeFileSync(PayloadPath, JSON.stringify(ParsedPayload, null, 4), 'utf-8')
+}
+
+module.exports = {
+    increaseSlashcommandCounter,
+    increaseTotalButtonInteractionsCounter,
+    increaseTotalMessageCounter
+}
