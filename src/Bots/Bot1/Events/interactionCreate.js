@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 
-const interactions = require('../Interactions')
+const interactions = require('../Interactions') 
+    
+const counter = require('../Connection/Counters/Counters')
 
 module.exports = {
     Name: Discord.Events.InteractionCreate,
@@ -10,8 +12,12 @@ module.exports = {
     async execute(interaction) {
 
         let InteractionTypes = {
-            "ButtonInteraction": interactions.ButtonInteraction(interaction),
-            "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction) //Slashcommand
+            //ButtomInteraction
+            "ButtonInteraction": interactions.ButtonInteraction(interaction) & counter.increaseTotalButtonInteractionsCounter(),
+
+            //Slashcommand
+            "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction) & counter.increaseSlashcommandCounter()
+            
         }
 
 
