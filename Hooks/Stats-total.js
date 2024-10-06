@@ -13,6 +13,11 @@ const WebhookClient = new Discord.WebhookClient({ id: "1292233165062275092", tok
 
 const statsEmbed = new Discord.EmbedBuilder()
     .setTitle(`Server Stats`)
+    .setDescription(
+        `Total Messages: \`Num\`\n` +
+        `Total Slashcommands: \`Num\`\n` +
+        `Total GuildMembers: \`Num\``
+    )
 
 if (parsedPayload["StatsMessageID"]) {
     WebhookClient.editMessage(parsedPayload["StatsMessageID"], { embeds: [statsEmbed] })
@@ -20,10 +25,12 @@ if (parsedPayload["StatsMessageID"]) {
     WebhookClient.send({ embeds: [statsEmbed] }).then(
         message => {
             parsedPayload["StatsMessageID"] = message.id
+            console.log(parsedPayload["StatsMessageID"])
+            fs.writeFileSync(PayloadPath, JSON.stringify(parsedPayload, null, 4), 'utf-8')
         }
     )
 }
 
 
 
-fs.writeFileSync(PayloadPath, JSON.stringify(parsedPayload, null, 4), 'utf-8')
+
