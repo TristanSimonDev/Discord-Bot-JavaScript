@@ -21,9 +21,9 @@ module.exports = {
         }
         console.log(interaction.constructor.name)
         try {
-            await counter["increaseTotal" + interaction.constructor.name + "Counter"]()
+            counter.increaseStatCounters(interaction.constructor.name)
             
-            await InteractionTypes[interaction]
+            await InteractionTypes[interaction.constructor.name]
 
         } catch (err) {console.error(`Error: ${err}`)}
 
