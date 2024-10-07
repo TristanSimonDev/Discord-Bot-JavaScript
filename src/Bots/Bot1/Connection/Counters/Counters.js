@@ -9,12 +9,15 @@ function increaseStatCounters(constructorName) {
 
     console.log(ParsedPayload)
 
-    ParsedPayload["Total" + constructorName + "s"] += 1
+    const PayloadIndex = "Total" + constructorName + "s"
+
+    ParsedPayload[PayloadIndex] += 1
+
+    console.log(`Successfully wrote data <---${PayloadIndex}---> in ${PayloadPath}`)
 
     fs.writeFileSync(PayloadPath, JSON.stringify(ParsedPayload, null, 4), 'utf-8')
 }
 
 module.exports = {
-    increaseTotalChatInputCommandInteractionCounter,
-    increaseTotalButtonInteractionCounter
+    increaseStatCounters
 }
