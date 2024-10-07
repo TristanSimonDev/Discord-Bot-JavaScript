@@ -11,18 +11,18 @@ module.exports = {
     
     async execute(interaction) {
 
-        let InteractionTypes = {
+        let InteractionTypes = {   
             //ButtomInteraction
-            "ButtonInteraction": interactions.ButtonInteraction(interaction) & counter.increaseTotalButtonInteractionsCounter(),
+            "ButtonInteraction": interactions.ButtonInteraction(interaction),
 
             //Slashcommand
-            "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction) & counter.increaseSlashcommandCounter()
+            "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction)
             
         }
-
-
+        console.log(interaction.constructor.name)
         try {
-
+            await counter["increaseTotal" + interaction.constructor.name + "Counter"]()
+            
             await InteractionTypes[interaction]
 
         } catch (err) {console.error(`Error: ${err}`)}
