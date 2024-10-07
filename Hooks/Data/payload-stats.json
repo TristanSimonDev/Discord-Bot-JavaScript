@@ -1,7 +1,7 @@
 {
     "StatsMessageID": "1292394263992209463",
     "TotalMessages": 0,
-    "TotalSlashCommands": 10,
-    "TotalButtonInteractions": 3,
+    "TotalChatInputCommandInteraction": 11,
+    "TotalButtonInteractions": 5,
     "GuildMembers": 0
 }
