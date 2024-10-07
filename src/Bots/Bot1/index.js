@@ -7,8 +7,9 @@ const fs = require('fs')
 
 const ColorOutput = require('./functions/ColorOutput').ColorOutput
 
-
-const client = new Discord.Client({ intents: [32767], });  // Adjust intents as needed for your bot's functionality
+// -----------------------Set Permissions---------------------------
+const client = new Discord.Client({ intents: [32767], });  
+// -----------------------------------------------------------------
 
 
 
@@ -49,11 +50,36 @@ for (const file of EventFiles) {
 
 process.on('SIGINT', () => {
     console.log(ColorOutput('Received SIGINT. Gracefully shutting down...').green);
-    client.destroy();  // Clean up resources and logout
-    process.exit(0);  // Exit the process
+    client.destroy();  // Clean up resources  [logout]
+    process.exit(0);  // Exit process
 });
 
 // Login to Discord
-client.login(process.env.TokenForChatBot).then(console.log(ColorOutput("Token is working").green)) || console.log(ColorOutput("Error on Token").red);
-
-
+client.login(process.env.TokenForChatBot)
+    .then(() => {
+        console.log(ColorOutput(
+            `\n=== Bot Login Info ===` +
+            `\n\nToken Length:                  ${process.env.TokenForChatBot.length}` +
+            `\nNode Version:                   ${process.version}` +
+            `\nDevice Architecture:            ${process.arch}` +
+            `\nDiscord.js Version:             ${require('discord.js').version}` +
+            `\nOS:                             ${process.platform}` +
+            `\nUptime:                         ${Math.floor(process.uptime())} seconds` +
+            `\nMemory Used:                    ${Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100} MB` +
+            `\nStatus: Working [${client.user.tag}] => Logged in Successfully\n`
+        ).magenta);
+    })
+    .catch((error) => {
+        console.log(ColorOutput(
+            `\n=== Bot Login Info ===` +
+            `\n\nToken Length:                  ${process.env.TokenForChatBot.length}` +
+            `\nNode Version:                   ${process.version}` +
+            `\nDevice Architecture:            ${process.arch}` +
+            `\nDiscord.js Version:             ${require('discord.js').version}` +
+            `\nOS:                             ${process.platform}` +
+            `\nUptime:                         ${Math.floor(process.uptime())} seconds` +
+            `\nMemory Used:                    ${Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100} MB` +
+            `\nStatus: Failed [ERROR] => Login failed\n`
+        ).red); // Changed to red for errors
+        console.error(`Error Details: ${error.message}`); // Log the error details for debugging
+    });
