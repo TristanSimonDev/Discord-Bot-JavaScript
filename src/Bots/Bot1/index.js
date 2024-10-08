@@ -59,7 +59,7 @@ client.login(process.env.TokenForChatBot)
     .then(() => {
         console.log(ColorOutput(
             `\n=== Bot Login Info ===` +
-            `\n\nToken Length:                  ${process.env.TokenForChatBot.length}` +
+            `\n\nToken Length:                 ${process.env.TokenForChatBot.length}` +
             `\nNode Version:                   ${process.version}` +
             `\nDevice Architecture:            ${process.arch}` +
             `\nDiscord.js Version:             ${require('discord.js').version}` +
