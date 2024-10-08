@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 const interactions = require('../Interactions') 
     
-const counter = require('../Connection/Counters/Counters')
+const counter = require('../Stats-WebHook/Counters')
 
 module.exports = {
     Name: Discord.Events.InteractionCreate,
