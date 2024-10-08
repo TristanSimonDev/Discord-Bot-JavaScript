@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const Discord = require('discord.js')
 
-const PayloadPath = "src/Bots/Bot1/Hooks/payload-stats.json"
+const PayloadPath = "src/Bots/Bot1/Stats-WebHook/payload-stats.json"
 
 
 
