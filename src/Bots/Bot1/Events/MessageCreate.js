@@ -1,5 +1,7 @@
 const Discord = require('discord.js')
 
+const Counter = require('../Stats-WebHook/Counters')
+
 module.exports = {
     Name: Discord.Events.MessageCreate,
     Type: 'on',
@@ -9,6 +11,8 @@ module.exports = {
 
         
         try {
+
+            Counter.increaseStatCounters(message.constructor.name)
 
             console.log(message.constructor.name)
 
