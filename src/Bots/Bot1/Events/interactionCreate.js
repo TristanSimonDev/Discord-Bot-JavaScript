@@ -16,13 +16,14 @@ module.exports = {
             "ButtonInteraction": interactions.ButtonInteraction(interaction),
 
             //Slashcommand
-            "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction)
-            
+            "ChatInputCommandInteraction": interactions.SlashcommandInteraction(interaction)   
         }
-        console.log(interaction.constructor.name)
+
+
         try {
-            counter.increaseStatCounters(interaction.constructor.name)
             
+            counter.increaseStatCounters(interaction.constructor.name)
+        
             await InteractionTypes[interaction.constructor.name]
 
         } catch (err) {console.error(`Error: ${err}`)}
