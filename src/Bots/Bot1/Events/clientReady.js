@@ -13,14 +13,25 @@ module.exports = {
     async execute(client) {
         if (!(client instanceof Discord.Client)) return;
 
-        console.log("Client ready");
+        try {
+            
+            await Promise.all([
+                console.log("Client ready"),
+    
+                TicketInstruction.InstructionEmbed(client),
+    
+                reloadcommands.ListCommands(),
+    
+                ReactionLoader.LoadReactions(client)
+            ])
+            setInterval(webhook.updateStatsEmbed, 10000);
 
-        TicketInstruction.InstructionEmbed(client);
+        } catch (err) {console.error(err)}
+        
+        
 
-        reloadcommands.ListCommands();
+        
 
-        ReactionLoader.LoadReactions(client);
-
-        setInterval(webhook.updateStatsEmbed, 10000);
+        
     },
 };
