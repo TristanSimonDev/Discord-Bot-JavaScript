@@ -14,9 +14,8 @@ module.exports = {
         if (!(client instanceof Discord.Client)) return;
 
         try {
-            
+            console.log(`Client Istructions loading...`)
             await Promise.all([
-                console.log("Client ready"),
     
                 TicketInstruction.InstructionEmbed(client),
     
@@ -24,6 +23,10 @@ module.exports = {
     
                 ReactionLoader.LoadReactions(client)
             ])
+
+            console.log(`Client Istructions Loaded Succesfully!`)
+
+            //after the Promisse all Refresh the Webhook Every 10 Seconds
             setInterval(webhook.updateStatsEmbed, 10000);
 
         } catch (err) {console.error(err)}
