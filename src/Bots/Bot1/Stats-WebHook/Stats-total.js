@@ -9,7 +9,9 @@ const PayloadPath = "src/Bots/Bot1/Stats-WebHook/payload-stats.json"
 
 const WebhookClient = new Discord.WebhookClient({ id: "1292233165062275092", token: process.env.StatsWebhookToken })
 
-function updateStatsEmbed() {
+async function updateStatsEmbed() {
+
+    console.log("Refreshing Stats Embed...")
 
     const data = fs.readFileSync(PayloadPath, 'utf-8')
     const parsedPayload = JSON.parse(data)
@@ -22,21 +24,26 @@ function updateStatsEmbed() {
         `Total Messages: \`${parsedPayload["TotalMessages"]}\`\n` +
         `Total Slashcommands: \`${parsedPayload["TotalChatInputCommandInteraction"]}\`\n` +
         `Total Buttons: \`${parsedPayload["TotalButtonInteractions"]}\`\n` +
-        `Total GuildMembers: \`${parsedPayload["GuildMembers"]}\n` +
         `Last Refreshed: <t:${Timestamp}:R>`
     )
 
-    if (parsedPayload["StatsMessageID"]) {
-    WebhookClient.editMessage(parsedPayload["StatsMessageID"], { embeds: [statsEmbed] })
-    } else {
-        WebhookClient.send({ embeds: [statsEmbed] }).then(
-            message => {
-                parsedPayload["StatsMessageID"] = message.id
-                console.log(parsedPayload["StatsMessageID"])
-                fs.writeFileSync(PayloadPath, JSON.stringify(parsedPayload, null, 4), 'utf-8')
-            }
-        )
+    try {
+        if (parsedPayload["StatsMessageID"]) {
+            // Update the existing message
+            await WebhookClient.editMessage(parsedPayload["StatsMessageID"], { embeds: [statsEmbed] });
+            console.log("Successfully updated the existing Stats Embed in your channel!");
+        } else {
+            // Send a new message
+            const message = await WebhookClient.send({ embeds: [statsEmbed] });
+            parsedPayload["StatsMessageID"] = message.id;
+            fs.writeFileSync(PayloadPath, JSON.stringify(parsedPayload, null, 4), 'utf-8');
+            console.log("Successfully loaded a new Stats Embed in your channel!");
+        }
+    } catch (err) {
+        console.error(`An error occurred while trying to update or send the Stats Embed: ${err}`);
     }
 }
+
+
 
 module.exports = {updateStatsEmbed}
