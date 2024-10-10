@@ -1,28 +1,32 @@
 @echo off
+
 :: Set the Current directory to the location of the script
 set CurrentDir=%~dp0
 
+:: Set the StartDir of the Batch Script
 set StartDir=%cd%
 
-:: Set the Root directory to three levels up from the Current directory
+:: Set the Root directory of the Project
 set RootDir=%CurrentDir%..
 
-:: Echo the Current directory
-echo Current Directory: %RootDir%
+:: Current directory
+echo Current Directory: %CurrentDir%
 
 :: Change to the Root directory
-cd /d %RootDir%
+cd /d %StartDir%
 
 :: List the contents of the Root directory
 dir
 
-:: Move package.json to the test directory
-xcopy "%RootDir%\package*.json" "%StartDir%"
+:: Move package to the Dockerfile directory
+move "%StartDir%\Dockerfile" "%RootDir%"
 
-cd /d %CurrentDir%
+:: Goback to the Folder where the Docker and the Batch file is
+cd /d %RootDir%
 
-docker build -f Dockerfile -t test:1.3 .
+:: Build DockerImage
+docker build --no-cache -t test:1.3 -f Dockerfile .
 
-del "%CurrentDir%/package*.json"
+move "%RootDir%\Dockerfile" "%StartDir%"
 
 pause
