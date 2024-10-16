@@ -13,8 +13,5 @@ RUN npm install
 # Copy the rest of the application code into the container
 COPY . .
 
-# List the contents of the /docker directory for debugging
-RUN ls -R /docker
-
 # Command to run the application
 CMD ["node", "src/Bots/Bot1/index.js"]
