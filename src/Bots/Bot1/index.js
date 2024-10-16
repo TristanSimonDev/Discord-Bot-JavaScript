@@ -11,6 +11,7 @@ const ColorOutput = require("./functions/ColorOutput").ColorOutput;
 const client = new Discord.Client({ intents: [32767] });
 // -----------------------------------------------------------------
 
+
 // -----------------------Set SlashCommands---------------------------
 
 client.commands = new Discord.Collection();
@@ -27,6 +28,7 @@ for (const file of commandFiles) {
 }
 
 //--------------------------------------------------------------------
+
 
 //------------------------Client Events-------------------------------
 
