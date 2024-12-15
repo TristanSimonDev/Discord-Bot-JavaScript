@@ -1,0 +1,16 @@
+name: Say Hi
+
+on: 
+  push:
+    branches: [ main ] # Trigger workflow on push to 'main' branch
+
+jobs:
+  print_hi:
+    runs-on: ubuntu-latest # Use a virtual machine with Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Say Hi
+        run: echo "hi"
